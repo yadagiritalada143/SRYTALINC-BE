@@ -9,9 +9,10 @@ const UserSchema = new mongoose.Schema({
     password: { type: mongoose.Schema.Types.String },
     mobileNumber: { type: mongoose.Schema.Types.Number },
     userRole: { type: mongoose.Schema.Types.String },
+    passwordResetRequired: { type: mongoose.Schema.Types.String },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
-    collection: 'user_details',
+    collection: 'users',
     toObject: { virtuals: true },
     toJSON: { virtuals: true }
 });

@@ -4,6 +4,7 @@ import { ERRORS, ACCOUNT_MESSAGES } from '../constants/registrationMessages';
 
 const register = (req: Request, res: Response) => {
     const newRegistrationData = req.body;
+    newRegistrationData.passwordResetRequired = true;
     adminSignUpService
         .isAccountPresent(newRegistrationData.userName, newRegistrationData.email)
         .then(({ userExists, emailExists }) => {
@@ -20,7 +21,6 @@ const register = (req: Request, res: Response) => {
             return adminSignUpService.saveAccount(newRegistrationData);
         })
         .then(responseAfterRegistration => {
-            console.log('After registration:', responseAfterRegistration)
             return res.status(201).json({ message: ACCOUNT_MESSAGES.REGISTRATION_SUCCESS });
         })
         .catch(error => {

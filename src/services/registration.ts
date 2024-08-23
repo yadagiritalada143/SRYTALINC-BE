@@ -1,5 +1,5 @@
 import models from "../model/userModel";
-import User from "../types/user";
+import IUser from "../interfaces/user";
 import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = 10;
@@ -16,7 +16,7 @@ const isAccountPresent = async (userName: string, email: string) => {
         .then(([userExists, emailExists]) => ({ userExists, emailExists }));
 }
 
-const saveAccount = async (userData: User) => {
+const saveAccount = async (userData: IUser) => {
     const userDataToSave = new models.UserModel({ ...userData });
 
     const result = await userDataToSave.save();

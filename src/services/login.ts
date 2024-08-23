@@ -16,6 +16,7 @@ interface AuthResponse {
     id?: string;
     role?: string;
     token?: string;
+    passwordResetRequired?: string;
 }
 
 const createCSRFToken = (): Promise<string> => {
@@ -41,7 +42,7 @@ const authenticateAccount = ({ email, password }: LoginCredentials): Promise<Aut
                             resolve({ success: false });
                         } else {
                             const token = jwt.sign({ email: user.email }, SECRET_KEY, { expiresIn: '1h' });
-                            resolve({ success: true, role: user.userRole, id: user.id, token });
+                            resolve({ success: true, role: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, token });
                         }
                     });
                 }
