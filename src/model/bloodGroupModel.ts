@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import IBloodgroup from '../interfaces/bloodgroup';
 
 const BloodgroupSchema: Schema = new mongoose.Schema({

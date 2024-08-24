@@ -21,7 +21,6 @@ const getUserDetails = (email: string): Promise<FetchUserResponse> => {
     return new Promise((resolve, reject) => {
         UserModel.findOne({ email }).populate('bloodGroup')
             .then((user: any) => {
-                console.log(user.bloodGroup);
                 if (!user) {
                     resolve({ success: false });
                 } else {
