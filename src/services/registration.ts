@@ -1,4 +1,4 @@
-import models from "../model/userModel";
+import UserModel from "../model/userModel";
 import IUser from "../interfaces/user";
 import bcrypt from 'bcrypt';
 
@@ -9,15 +9,15 @@ const hashPassword = (password: string) => {
 };
 
 const isAccountPresent = async (userName: string, email: string) => {
-    const userExists = await models.UserModel.findOne({ userName: userName }).then((user: any) => !!user);
-    const emailExists = await models.UserModel.findOne({ email: email }).then((user: any) => !!user);
+    const userExists = await UserModel.findOne({ userName: userName }).then((user: any) => !!user);
+    const emailExists = await UserModel.findOne({ email: email }).then((user: any) => !!user);
 
     return Promise.all([userExists, emailExists])
         .then(([userExists, emailExists]) => ({ userExists, emailExists }));
 }
 
 const saveAccount = async (userData: IUser) => {
-    const userDataToSave = new models.UserModel({ ...userData });
+    const userDataToSave: any = new UserModel({ ...userData });
 
     const result = await userDataToSave.save();
     return result;

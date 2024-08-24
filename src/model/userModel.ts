@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
     mobileNumber: { type: mongoose.Schema.Types.Number },
     userRole: { type: mongoose.Schema.Types.String },
     passwordResetRequired: { type: mongoose.Schema.Types.String },
+    bloodGroup: { type: mongoose.Schema.Types.ObjectId },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
@@ -24,4 +25,4 @@ UserSchema.virtual('id').get(function () {
 });
 
 const UserModel = mongoose.model('UserSchema', UserSchema);
-export default { UserModel };
+export default UserModel;

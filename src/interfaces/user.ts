@@ -1,6 +1,7 @@
+import mongoose, { Schema, Types, Document } from "mongoose";
 import BankDetailsInfo from '../types/bankDetailsInfo';
 
-interface IUser {
+interface IUser extends Document {
     id: number;
     firstName: string;
     lastName: string;
@@ -11,6 +12,7 @@ interface IUser {
     userRole?: string;
     passwordResetRequired?: boolean;
     bankDetailsInfo?: BankDetailsInfo;
+    bloodGroup?: mongoose.Schema.Types.ObjectId;
 };
 
 export default IUser;
