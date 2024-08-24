@@ -9,7 +9,7 @@ const commonRouter: Router = express.Router();
 
 commonRouter.post('/login', loginController.login);
 commonRouter.post('/register', registerController.register);
-commonRouter.get('/getUserDetails/:email', commonController.getUserDetails);
-commonRouter.put('/updateUserDetails', validateProfileRequest(userSchema), commonController.updateProfile);
+commonRouter.get('/getEmployeeDetailsByAdmin/:email', commonController.getUserDetails);
+commonRouter.put('/updateEmployeeDetailsByAdmin', validateProfileRequest(userSchema), commonController.updateProfile);
 
 export default commonRouter;

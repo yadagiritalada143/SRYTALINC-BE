@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
+import Bloodgroup from '../model/bloodGroupModel';
+import IUser from '../interfaces/user';
 
 const UserSchema = new mongoose.Schema({
     firstName: { type: mongoose.Schema.Types.String },
@@ -10,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     mobileNumber: { type: mongoose.Schema.Types.Number },
     userRole: { type: mongoose.Schema.Types.String },
     passwordResetRequired: { type: mongoose.Schema.Types.String },
-    bloodGroup: { type: mongoose.Schema.Types.ObjectId },
+    bloodGroup: { type: mongoose.Schema.Types.ObjectId, ref: Bloodgroup },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
@@ -24,5 +26,5 @@ UserSchema.virtual('id').get(function () {
     return String(this._id);
 });
 
-const UserModel = mongoose.model('UserSchema', UserSchema);
+const UserModel = mongoose.model<IUser>('UserSchema', UserSchema);
 export default UserModel;

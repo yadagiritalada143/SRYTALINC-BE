@@ -1,10 +1,10 @@
-import models from '../model/userModel';
-import user from '../types/user';
+import IUser from '../interfaces/user';
+import UserModel from '../model/userModel';
 import bcrypt from 'bcrypt';
 
 interface FetchUserResponse {
     success: boolean;
-    user?: user;
+    userDetails?: any;
 }
 
 interface UpdateProfileResponse {
@@ -19,21 +19,22 @@ const hashPassword = async (password: string) => {
 
 const getUserDetails = (email: string): Promise<FetchUserResponse> => {
     return new Promise((resolve, reject) => {
-        models.UserModel.findOne({ email })
+        UserModel.findOne({ email }).populate('bloodGroup')
             .then((user: any) => {
+                console.log(user.bloodGroup);
                 if (!user) {
                     resolve({ success: false });
                 } else {
                     resolve({
                         success: true,
-                        user: {
+                        userDetails: {
                             id: user.id,
                             firstName: user.firstName,
                             lastName: user.lastName,
                             userName: user.userName,
-                            password: user.password,
                             email: user.email,
                             mobileNumber: user.mobileNumber,
+                            bloodGroup: user.bloodGroup
                         }
                     });
                 }
@@ -45,17 +46,16 @@ const getUserDetails = (email: string): Promise<FetchUserResponse> => {
     });
 }
 
-const updateProfile = async (userDetailsToUpdate: user): Promise<UpdateProfileResponse> => {
+const updateProfile = async (userDetailsToUpdate: IUser): Promise<UpdateProfileResponse> => {
     return new Promise(async (resolve, reject) => {
-        userDetailsToUpdate.password = await hashPassword(userDetailsToUpdate.password);
-        const result = await models.UserModel.updateOne(
+        const result = await UserModel.updateOne(
             { email: userDetailsToUpdate.email },
             {
                 firstName: userDetailsToUpdate.firstName,
                 lastName: userDetailsToUpdate.lastName,
                 userName: userDetailsToUpdate.userName,
-                password: userDetailsToUpdate.password,
-                mobileNumber: userDetailsToUpdate.mobileNumber
+                mobileNumber: userDetailsToUpdate.mobileNumber,
+                bloodGroup: userDetailsToUpdate.bloodGroup
             })
             .then((responseAfterUpdateProfile: any) => {
                 resolve({

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import models from '../model/userModel';
+import UserModel from '../model/userModel';
 import dotenv from 'dotenv';
 import csrf from 'csrf-token';
 dotenv.config();
@@ -32,7 +32,7 @@ const createCSRFToken = (): Promise<string> => {
 
 const authenticateAccount = ({ email, password }: LoginCredentials): Promise<AuthResponse> => {
     return new Promise(async (resolve, reject) => {
-        await models.UserModel.findOne({ email })
+        await UserModel.findOne({ email })
             .then((user: any) => {
                 if (!user) {
                     resolve({ success: false });
