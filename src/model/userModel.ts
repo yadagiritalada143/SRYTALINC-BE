@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import Bloodgroup from '../model/bloodGroupModel';
+import Employmenttype from '../model/employmentTypeModel';
 import IUser from '../interfaces/user';
+
 const UserSchema = new mongoose.Schema({
     firstName: { type: mongoose.Schema.Types.String },
     lastName: { type: mongoose.Schema.Types.String },
@@ -17,6 +19,7 @@ const UserSchema = new mongoose.Schema({
         accountNumber: { type: mongoose.Schema.Types.String },
         ifscCode: { type: mongoose.Schema.Types.String }
     },
+    employmentType: { type: mongoose.Schema.Types.ObjectId, ref: Employmenttype },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
