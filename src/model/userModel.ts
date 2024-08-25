@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import Bloodgroup from '../model/bloodGroupModel';
 import IUser from '../interfaces/user';
-
 const UserSchema = new mongoose.Schema({
     firstName: { type: mongoose.Schema.Types.String },
     lastName: { type: mongoose.Schema.Types.String },
@@ -13,6 +12,11 @@ const UserSchema = new mongoose.Schema({
     userRole: { type: mongoose.Schema.Types.String },
     passwordResetRequired: { type: mongoose.Schema.Types.String },
     bloodGroup: { type: mongoose.Schema.Types.ObjectId, ref: Bloodgroup },
+    bankDetailsInfo: {
+        accountHolderName: { type: mongoose.Schema.Types.String },
+        accountNumber: { type: mongoose.Schema.Types.String },
+        ifscCode: { type: mongoose.Schema.Types.String }
+    },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',

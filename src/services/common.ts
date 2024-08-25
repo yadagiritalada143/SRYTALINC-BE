@@ -54,7 +54,8 @@ const updateProfile = async (userDetailsToUpdate: IUser): Promise<UpdateProfileR
                 lastName: userDetailsToUpdate.lastName,
                 userName: userDetailsToUpdate.userName,
                 mobileNumber: userDetailsToUpdate.mobileNumber,
-                bloodGroup: userDetailsToUpdate.bloodGroup
+                bloodGroup: userDetailsToUpdate.bloodGroup,
+                bankDetailsInfo: userDetailsToUpdate.bankDetailsInfo
             })
             .then((responseAfterUpdateProfile: any) => {
                 resolve({
