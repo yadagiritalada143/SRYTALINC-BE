@@ -6,11 +6,9 @@ const register = (req: Request, res: Response) => {
     const newRegistrationData = req.body;
     newRegistrationData.passwordResetRequired = true;
     adminSignUpService
-        .isAccountPresent(newRegistrationData.userName, newRegistrationData.email)
-        .then(({ userExists, emailExists }) => {
-            if (userExists) {
-                throw new Error(ERRORS.USERNAME_EXISTS);
-            }
+        .isAccountPresent(newRegistrationData.email)
+        .then((emailExists) => {
+
             if (emailExists) {
                 throw new Error(ERRORS.EMAIL_EXISTS);
             }
@@ -24,7 +22,7 @@ const register = (req: Request, res: Response) => {
             return res.status(201).json({ message: ACCOUNT_MESSAGES.REGISTRATION_SUCCESS });
         })
         .catch(error => {
-            if (error.message === ERRORS.EMAIL_EXISTS || error.message === ERRORS.USERNAME_EXISTS) {
+            if (error.message === ERRORS.EMAIL_EXISTS) {
                 return res.status(409).json({ message: error.message });
             }
             console.log(error);

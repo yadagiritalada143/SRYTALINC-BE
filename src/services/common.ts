@@ -19,10 +19,7 @@ const hashPassword = async (password: string) => {
 
 const getUserDetails = (email: string): Promise<FetchUserResponse> => {
     return new Promise((resolve, reject) => {
-        UserModel.findOne({ email })
-            .populate('bloodGroup')
-            .populate('employmentType')
-            .populate('employeeRole')
+        UserModel.findOne({ email }).populate('bloodGroup').populate('employmentType').populate('employeeRole')
             .then((user: any) => {
                 if (!user) {
                     resolve({ success: false });
@@ -33,7 +30,6 @@ const getUserDetails = (email: string): Promise<FetchUserResponse> => {
                             id: user.id,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            userName: user.userName,
                             email: user.email,
                             mobileNumber: user.mobileNumber,
                             bloodGroup: user.bloodGroup,
@@ -59,7 +55,6 @@ const updateProfile = async (userDetailsToUpdate: IUser): Promise<UpdateProfileR
             {
                 firstName: userDetailsToUpdate.firstName,
                 lastName: userDetailsToUpdate.lastName,
-                userName: userDetailsToUpdate.userName,
                 mobileNumber: userDetailsToUpdate.mobileNumber,
                 bloodGroup: userDetailsToUpdate.bloodGroup,
                 bankDetailsInfo: userDetailsToUpdate.bankDetailsInfo,

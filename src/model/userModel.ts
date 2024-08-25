@@ -8,7 +8,6 @@ import IUser from '../interfaces/user';
 const UserSchema = new mongoose.Schema({
     firstName: { type: mongoose.Schema.Types.String },
     lastName: { type: mongoose.Schema.Types.String },
-    userName: { type: mongoose.Schema.Types.String },
     email: { type: mongoose.Schema.Types.String, required: true, unique: true },
     password: { type: mongoose.Schema.Types.String },
     mobileNumber: { type: mongoose.Schema.Types.Number },

@@ -8,12 +8,11 @@ const hashPassword = (password: string) => {
     return bcrypt.hash(password, SALT_ROUNDS);
 };
 
-const isAccountPresent = async (userName: string, email: string) => {
-    const userExists = await UserModel.findOne({ userName: userName }).then((user: any) => !!user);
+const isAccountPresent = async (email: string) => {
     const emailExists = await UserModel.findOne({ email: email }).then((user: any) => !!user);
 
-    return Promise.all([userExists, emailExists])
-        .then(([userExists, emailExists]) => ({ userExists, emailExists }));
+    return Promise.all([emailExists])
+        .then((emailExists) => (emailExists));
 }
 
 const saveAccount = async (userData: IUser) => {

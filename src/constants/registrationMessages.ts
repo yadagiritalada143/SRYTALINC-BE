@@ -1,5 +1,4 @@
 export const ERRORS = {
-    USERNAME_EXISTS: 'Username already exists !',
     EMAIL_EXISTS: 'Email already exists !',
     USER_CREATION_ERROR: 'An error occurred while Registration, Please try again !',
 };
