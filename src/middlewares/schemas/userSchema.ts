@@ -11,7 +11,8 @@ const userSchema = Joi.object({
         accountHolderName: Joi.string().optional(),
         accountNumber: Joi.string().optional(),
         ifscCode: Joi.string().optional(),
-    }
+    },
+    employmentType: Joi.string().optional(),
 });
 
 export default userSchema;

@@ -13,6 +13,7 @@ interface IUser extends Document {
     passwordResetRequired?: boolean;
     bankDetailsInfo?: BankDetailsInfo;
     bloodGroup?: mongoose.Schema.Types.ObjectId;
+    employmentType?: mongoose.Schema.Types.ObjectId;
 };
 
 export default IUser;
