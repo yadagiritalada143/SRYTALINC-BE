@@ -7,6 +7,11 @@ const userSchema = Joi.object({
     email: Joi.string().email().required(),
     mobileNumber: Joi.number().integer().min(0).optional(),
     bloodGroup: Joi.string().optional(),
+    bankDetailsInfo: {
+        accountHolderName: Joi.string().optional(),
+        accountNumber: Joi.string().optional(),
+        ifscCode: Joi.string().optional(),
+    }
 });
 
 export default userSchema;
