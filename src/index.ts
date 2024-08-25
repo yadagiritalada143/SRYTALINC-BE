@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
 import connectToDb from '../src/config/databaseConfig';
-import commonRouter from './routes/commonRoutes';
+import adminRouter from './routes/adminRoutes';
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ app.use(cors({
 
 connectToDb();
 
-app.use('/auth', commonRouter);
+app.use('/admin', adminRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at  http://localhost:${port}`);

@@ -19,7 +19,10 @@ const hashPassword = async (password: string) => {
 
 const getUserDetails = (email: string): Promise<FetchUserResponse> => {
     return new Promise((resolve, reject) => {
-        UserModel.findOne({ email }).populate('bloodGroup').populate('employmentType')
+        UserModel.findOne({ email })
+            .populate('bloodGroup')
+            .populate('employmentType')
+            .populate('employeeRole')
             .then((user: any) => {
                 if (!user) {
                     resolve({ success: false });
@@ -35,7 +38,8 @@ const getUserDetails = (email: string): Promise<FetchUserResponse> => {
                             mobileNumber: user.mobileNumber,
                             bloodGroup: user.bloodGroup,
                             bankDetailsInfo: user.bankDetailsInfo,
-                            employmentType: user.employmentType
+                            employmentType: user.employmentType,
+                            employeeRole: user.employeeRole
                         }
                     });
                 }
@@ -48,6 +52,7 @@ const getUserDetails = (email: string): Promise<FetchUserResponse> => {
 }
 
 const updateProfile = async (userDetailsToUpdate: IUser): Promise<UpdateProfileResponse> => {
+    console.log(userDetailsToUpdate);
     return new Promise(async (resolve, reject) => {
         const result = await UserModel.updateOne(
             { email: userDetailsToUpdate.email },
@@ -58,7 +63,8 @@ const updateProfile = async (userDetailsToUpdate: IUser): Promise<UpdateProfileR
                 mobileNumber: userDetailsToUpdate.mobileNumber,
                 bloodGroup: userDetailsToUpdate.bloodGroup,
                 bankDetailsInfo: userDetailsToUpdate.bankDetailsInfo,
-                employmentType: userDetailsToUpdate.employmentType
+                employmentType: userDetailsToUpdate.employmentType,
+                employeeRole: userDetailsToUpdate.employeeRole
             })
             .then((responseAfterUpdateProfile: any) => {
                 resolve({

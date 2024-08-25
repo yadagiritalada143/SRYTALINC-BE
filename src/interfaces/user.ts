@@ -14,6 +14,7 @@ interface IUser extends Document {
     bankDetailsInfo?: BankDetailsInfo;
     bloodGroup?: mongoose.Schema.Types.ObjectId;
     employmentType?: mongoose.Schema.Types.ObjectId;
+    employeeRole?: mongoose.Schema.Types.Array;
 };
 
 export default IUser;

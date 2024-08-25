@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import Bloodgroup from '../model/bloodGroupModel';
 import Employmenttype from '../model/employmentTypeModel';
+import Employeerole from '../model/employeeRole';
 import IUser from '../interfaces/user';
 
 const UserSchema = new mongoose.Schema({
@@ -20,6 +21,7 @@ const UserSchema = new mongoose.Schema({
         ifscCode: { type: mongoose.Schema.Types.String }
     },
     employmentType: { type: mongoose.Schema.Types.ObjectId, ref: Employmenttype },
+    employeeRole: [{ type: mongoose.Schema.Types.ObjectId, ref: Employeerole }],
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
