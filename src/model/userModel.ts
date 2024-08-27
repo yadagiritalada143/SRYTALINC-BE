@@ -3,6 +3,7 @@ import uniqueValidator from 'mongoose-unique-validator';
 import Bloodgroup from '../model/bloodGroupModel';
 import Employmenttype from '../model/employmentTypeModel';
 import Employeerole from '../model/employeeRole';
+import Organization from '../model/organization'
 import IUser from '../interfaces/user';
 
 const UserSchema = new mongoose.Schema({
@@ -21,6 +22,7 @@ const UserSchema = new mongoose.Schema({
     },
     employmentType: { type: mongoose.Schema.Types.ObjectId, ref: Employmenttype },
     employeeRole: [{ type: mongoose.Schema.Types.ObjectId, ref: Employeerole }],
+    organization: [{ type: mongoose.Schema.Types.ObjectId, ref: Organization }],
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
