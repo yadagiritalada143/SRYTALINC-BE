@@ -5,6 +5,7 @@ import { ERRORS, ACCOUNT_MESSAGES } from '../constants/registrationMessages';
 const register = (req: Request, res: Response) => {
     const newRegistrationData = req.body;
     newRegistrationData.passwordResetRequired = true;
+    newRegistrationData.userRole = 'employee';
     adminSignUpService
         .isAccountPresent(newRegistrationData.email)
         .then((emailExists) => {
