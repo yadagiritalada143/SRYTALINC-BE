@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
     },
     employmentType: { type: mongoose.Schema.Types.ObjectId, ref: Employmenttype },
     employeeRole: [{ type: mongoose.Schema.Types.ObjectId, ref: Employeerole }],
-    organization: [{ type: mongoose.Schema.Types.ObjectId, ref: Organization }],
+    organization: { type: mongoose.Schema.Types.ObjectId, ref: Organization },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
