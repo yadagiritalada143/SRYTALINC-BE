@@ -6,6 +6,7 @@ const register = (req: Request, res: Response) => {
     const newRegistrationData = req.body;
     newRegistrationData.passwordResetRequired = true;
     newRegistrationData.userRole = 'employee';
+    newRegistrationData.applicationWalkThrough = 1;
     adminSignUpService
         .isAccountPresent(newRegistrationData.email)
         .then((emailExists) => {

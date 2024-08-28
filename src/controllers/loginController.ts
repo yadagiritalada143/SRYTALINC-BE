@@ -11,7 +11,7 @@ const login = (req: Request, res: Response): void => {
                 return loginServices.createCSRFToken().then(token => {
                     res.set('X-CSRF-Token', token);
                     res.cookie('jwt', authResponse.token);
-                    res.json({ success: true, id: authResponse.id, userRole: authResponse.userRole, passwordResetRequired: authResponse.passwordResetRequired, token: authResponse.token });
+                    res.json({ success: true, id: authResponse.id, userRole: authResponse.userRole, passwordResetRequired: authResponse.passwordResetRequired, applicationWalkThrough: authResponse.applicationWalkThrough, token: authResponse.token });
                 });
             } else {
                 res.status(401).json({ success: false, message: LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD });
