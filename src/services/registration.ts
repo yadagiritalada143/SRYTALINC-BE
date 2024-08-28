@@ -10,9 +10,7 @@ const hashPassword = (password: string) => {
 
 const isAccountPresent = async (email: string) => {
     const emailExists = await UserModel.findOne({ email: email }).then((user: any) => !!user);
-
-    return Promise.all([emailExists])
-        .then((emailExists) => (emailExists));
+    return emailExists;
 }
 
 const saveAccount = async (userData: IUser) => {

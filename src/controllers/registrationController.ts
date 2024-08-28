@@ -9,7 +9,6 @@ const register = (req: Request, res: Response) => {
     adminSignUpService
         .isAccountPresent(newRegistrationData.email)
         .then((emailExists) => {
-
             if (emailExists) {
                 throw new Error(ERRORS.EMAIL_EXISTS);
             }
