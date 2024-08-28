@@ -12,7 +12,8 @@ const userSchema = Joi.object({
         ifscCode: Joi.string().optional(),
     },
     employmentType: Joi.string().optional(),
-    employeeRole: Joi.array().optional()
+    employeeRole: Joi.array().optional(),
+    organization: Joi.string().optional()
 });
 
 export default userSchema;

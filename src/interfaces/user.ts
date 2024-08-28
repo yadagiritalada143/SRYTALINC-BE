@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types, Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
 import BankDetailsInfo from '../types/bankDetailsInfo';
 
 interface IUser extends Document {
@@ -14,6 +14,7 @@ interface IUser extends Document {
     bloodGroup?: mongoose.Schema.Types.ObjectId;
     employmentType?: mongoose.Schema.Types.ObjectId;
     employeeRole?: mongoose.Schema.Types.Array;
+    organization?: mongoose.Schema.Types.ObjectId;
 };
 
 export default IUser;
