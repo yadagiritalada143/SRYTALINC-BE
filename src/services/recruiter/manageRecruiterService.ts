@@ -17,7 +17,9 @@ const getPoolCompanyDetails = (): Promise<IPoolCompaniesResponse> => {
                         primaryContact: eachCompanyDetails.primaryContact,
                         secondaryContact_1: eachCompanyDetails.secondaryContact_1,
                         secondaryContact_2: eachCompanyDetails.secondaryContact_2,
-                        createdAt: eachCompanyDetails.createdAt
+                        status: eachCompanyDetails.status,
+                        createdAt: eachCompanyDetails.createdAt,
+                        lastUpdatedAt: eachCompanyDetails.lastUpdatedAt
                     }
                 });
                 resolve({ success: true, poolCompaniesResponse: responseToSendBack })

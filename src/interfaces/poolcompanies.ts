@@ -18,7 +18,9 @@ export interface IPoolcompanies extends Document {
         email?: string;
         phone?: string;
     },
+    status?: string,
     createdAt: Date;
+    lastUpdatedAt: Date;
 }
 
 export interface IPoolCompaniesResponse extends IPoolcompanies {

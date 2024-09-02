@@ -20,7 +20,9 @@ const PoolCompaniesSchema = new mongoose.Schema({
         email: { type: mongoose.Schema.Types.String },
         phone: { type: mongoose.Schema.Types.String }
     },
-    createdAt: { type: mongoose.Schema.Types.Date }
+    status: { type: mongoose.Schema.Types.String },
+    createdAt: { type: mongoose.Schema.Types.Date },
+    lastUpdatedAt: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'pool-companies',
     toObject: { virtuals: true },
