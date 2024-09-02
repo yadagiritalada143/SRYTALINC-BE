@@ -1,7 +1,7 @@
-import { IPoolcompanies, IPoolCompaniesResponse } from "../../interfaces/poolcompanies";
+import { IPoolcompanies } from "../../interfaces/poolcompanies";
 import PoolCompaniesModel from "../../model/poolCompanies";
 
-const getPoolCompanyDetails = (): Promise<IPoolCompaniesResponse> => {
+const getPoolCompanyDetails = (): Promise<any> => {
     return new Promise((resolve, reject) => {
         PoolCompaniesModel
             .find()
@@ -25,10 +25,26 @@ const getPoolCompanyDetails = (): Promise<IPoolCompaniesResponse> => {
                 resolve({ success: true, poolCompaniesResponse: responseToSendBack })
             })
             .catch((error: any) => {
-                console.log(`Error in fetching pool comapanies list at service level: ${error}`)
+                console.log(`Error in fetching pool companies list at service level: ${error}`)
                 reject({ success: false });
             })
     })
 }
 
-export default { getPoolCompanyDetails };
+
+const getPoolCompanyDetailsById = (id: string): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        PoolCompaniesModel
+            .findOne({ _id: id })
+            .then((poolCompanyResponse: any) => {
+                resolve({ success: true, poolCompanyResponse: poolCompanyResponse })
+            })
+            .catch((error: any) => {
+                console.log(`Error in fetching pool company at service level: ${error}`)
+                reject({ success: false });
+            })
+
+    })
+}
+
+export default { getPoolCompanyDetails, getPoolCompanyDetailsById };

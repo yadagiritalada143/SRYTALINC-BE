@@ -27,3 +27,9 @@ export interface IPoolCompaniesResponse extends IPoolcompanies {
     success: boolean,
     poolCompaniesResponse?: Array<IPoolcompanies>;
 }
+
+
+export interface IPoolCompanyResponse extends IPoolcompanies {
+    success: boolean,
+    poolCompanyResponse?: IPoolcompanies
+}

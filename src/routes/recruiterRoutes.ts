@@ -4,5 +4,6 @@ import recruiterController from '../controllers/recruiter/manageRecruiterControl
 const recruiterRouter: Router = express.Router();
 
 recruiterRouter.get('/getCompanyDetails', recruiterController.getPoolCompanyDetails);
+recruiterRouter.get('/getCompanyDetailsByIdByRecruiter/:id', recruiterController.getPoolCompanyDetailsById);
 
 export default recruiterRouter;
