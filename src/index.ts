@@ -5,6 +5,7 @@ import cors from 'cors';
 import session from 'express-session';
 import connectToDb from '../src/config/databaseConfig';
 import adminRouter from './routes/adminRoutes';
+import recruiterRouter from './routes/recruiterRoutes';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(cors({
 connectToDb();
 
 app.use('/admin', adminRouter);
+app.use('/recruiter', recruiterRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at  http://localhost:${port}`);

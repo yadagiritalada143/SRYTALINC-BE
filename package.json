@@ -49,6 +49,7 @@
     "@types/jest": "^29.5.12",
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/mongoose": "^5.11.97",
     "@types/mongoose-unique-validator": "^1.0.9",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.11.20",
