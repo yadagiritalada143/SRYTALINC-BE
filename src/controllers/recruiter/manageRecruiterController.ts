@@ -28,4 +28,16 @@ const getPoolCompanyDetailsById = (req: Request, res: Response) => {
         });
 }
 
-export default { getPoolCompanyDetails, getPoolCompanyDetailsById };
+const addPoolCompany = (req: Request, res: Response) => {
+    manageRecruiterService
+        .addPoolCompany(req.body)
+        .then((responseAfterPoolCompanyAdded: any) => {
+            res.status(200).json({ success: true });
+        })
+        .catch((error: any) => {
+            console.log(`Error while adding pool company details at controller level: ${error}`);
+            res.status(500).json({ success: false, message: RECRUITER_ERROR_MESSAGES.ERROR_ADDING_POOL_COMPANY_DETAILS });
+        });
+}
+
+export default { getPoolCompanyDetails, getPoolCompanyDetailsById, addPoolCompany };

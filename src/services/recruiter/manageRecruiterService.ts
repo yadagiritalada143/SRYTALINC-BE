@@ -43,8 +43,14 @@ const getPoolCompanyDetailsById = (id: string): Promise<any> => {
                 console.log(`Error in fetching pool company at service level: ${error}`)
                 reject({ success: false });
             })
-
     })
 }
 
-export default { getPoolCompanyDetails, getPoolCompanyDetailsById };
+const addPoolCompany = async (companyDetailsToAdd: IPoolcompanies): Promise<any> => {
+    const poolCompanyDataToSave: any = new PoolCompaniesModel({ ...companyDetailsToAdd });
+
+    const result = await poolCompanyDataToSave.save();
+    return result;
+}
+
+export default { getPoolCompanyDetails, getPoolCompanyDetailsById, addPoolCompany };
