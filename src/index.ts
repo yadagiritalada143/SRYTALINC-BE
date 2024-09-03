@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
 import connectToDb from '../src/config/databaseConfig';
+import commonRouter from './routes/commonRouter';
 import adminRouter from './routes/adminRoutes';
 import recruiterRouter from './routes/recruiterRoutes';
 
@@ -28,6 +29,7 @@ app.use(cors({
 
 connectToDb();
 
+app.use('/', commonRouter);
 app.use('/admin', adminRouter);
 app.use('/recruiter', recruiterRouter);
 
