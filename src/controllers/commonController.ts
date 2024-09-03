@@ -26,4 +26,16 @@ const updateProfile = (req: Request, res: Response) => {
         });
 }
 
-export default { getUserDetails, updateProfile }
+const updateVisitorCount = (req: Request, res: Response) => {
+    commonService
+        .updateVisitorCount()
+        .then((visitorsCountResponse: any) => {
+            res.status(200).json({ visitorCount: visitorsCountResponse });
+        })
+        .catch((error: any) => {
+            console.error(`Error in updating visitors count: ${error}`);
+            res.status(500).json({ success: false, message: COMMON_ERRORS.VISITORS_COUNT_UPDATING_ERROR });
+        });
+}
+
+export default { getUserDetails, updateProfile, updateVisitorCount }

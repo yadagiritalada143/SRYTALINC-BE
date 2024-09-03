@@ -1,5 +1,6 @@
 import IUser from '../interfaces/user';
 import UserModel from '../model/userModel';
+import VisitorsCountModel from '../model/visitorsCountModel';
 import bcrypt from 'bcrypt';
 
 interface FetchUserResponse {
@@ -79,4 +80,11 @@ const updateProfile = async (userDetailsToUpdate: IUser): Promise<UpdateProfileR
     });
 }
 
-export default { getUserDetails, updateProfile };
+const updateVisitorCount = async () => {
+    const getVisitorCount = await VisitorsCountModel.find().then((visitorsCount: any) => visitorsCount);
+    const currentVisitorCount = getVisitorCount[0].visitorCount;
+    await VisitorsCountModel.updateOne({ visitorCount: currentVisitorCount + 1, lastUpdatedAt: Date.now() })
+    return currentVisitorCount;
+}
+
+export default { getUserDetails, updateProfile, updateVisitorCount };
