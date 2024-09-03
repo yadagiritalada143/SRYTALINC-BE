@@ -18,6 +18,8 @@ interface AuthResponse {
     token?: string;
     passwordResetRequired?: string;
     applicationWalkThrough?: number;
+    firstName?: string;
+    lastName?: string;
 }
 
 const createCSRFToken = (): Promise<string> => {
@@ -43,7 +45,7 @@ const authenticateAccount = ({ email, password }: LoginCredentials): Promise<Aut
                             resolve({ success: false });
                         } else {
                             const token = jwt.sign({ email: user.email }, SECRET_KEY, { expiresIn: '1h' });
-                            resolve({ success: true, userRole: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, applicationWalkThrough: user.applicationWalkThrough, token });
+                            resolve({ success: true, userRole: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, applicationWalkThrough: user.applicationWalkThrough, token, firstName: user.firstName, lastName: user.lastName });
                         }
                     });
                 }

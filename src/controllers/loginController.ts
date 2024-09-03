@@ -2,16 +2,25 @@ import { Request, Response } from 'express';
 import loginServices from '../services/login';
 import { LOGIN_ERROR_MESSAGE } from '../constants/errorMessages';
 
-const login = (req: Request, res: Response): void => {
+const login = (req: Request, res: Response): any => {
     const { email, password } = req.body;
     loginServices
         .authenticateAccount({ email, password })
-        .then(authResponse => {
+        .then((authResponse: any) => {
             if (authResponse.success) {
                 return loginServices.createCSRFToken().then(token => {
                     res.set('X-CSRF-Token', token);
                     res.cookie('jwt', authResponse.token);
-                    res.json({ success: true, id: authResponse.id, userRole: authResponse.userRole, passwordResetRequired: authResponse.passwordResetRequired, applicationWalkThrough: authResponse.applicationWalkThrough, token: authResponse.token });
+                    res.json({
+                        success: true,
+                        id: authResponse.id,
+                        userRole: authResponse.userRole,
+                        passwordResetRequired: authResponse.passwordResetRequired,
+                        applicationWalkThrough: authResponse.applicationWalkThrough,
+                        token: authResponse.token,
+                        firstName: authResponse.firstName,
+                        lastName: authResponse.lastName
+                    });
                 });
             } else {
                 res.status(401).json({ success: false, message: LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD });
