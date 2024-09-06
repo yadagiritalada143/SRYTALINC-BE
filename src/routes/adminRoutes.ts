@@ -8,7 +8,7 @@ import validateProfileRequest from '../middlewares/validateProfileUpdate';
 const adminRouter: Router = express.Router();
 
 adminRouter.post('/login', loginController.login);
-adminRouter.post('/register', registerController.register);
+adminRouter.post('/registerEmployeeByAdmin', registerController.register);
 adminRouter.get('/getEmployeeDetailsByAdmin/:email', commonController.getUserDetails);
 adminRouter.put('/updateEmployeeDetailsByAdmin', validateProfileRequest(userSchema), commonController.updateProfile);
 
