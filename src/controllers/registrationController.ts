@@ -2,8 +2,14 @@ import { Request, Response } from 'express';
 import adminSignUpService from '../services/registration';
 import { ERRORS, ACCOUNT_MESSAGES } from '../constants/registrationMessages';
 
+const randomPasswordGenerate = () => {
+    return (Math.floor(Math.random() * 90000) + 10000) + '';
+}
+
 const register = (req: Request, res: Response) => {
     const newRegistrationData = req.body;
+    const randomPassword = randomPasswordGenerate();
+    newRegistrationData.password = randomPassword;
     newRegistrationData.passwordResetRequired = true;
     newRegistrationData.userRole = 'employee';
     newRegistrationData.applicationWalkThrough = 1;
@@ -20,6 +26,9 @@ const register = (req: Request, res: Response) => {
             return adminSignUpService.saveAccount(newRegistrationData);
         })
         .then(responseAfterRegistration => {
+            if (responseAfterRegistration.id) {
+                // TODO: Need to send an EMAIL to Employee with Email and temporary password
+            }
             return res.status(201).json({ message: ACCOUNT_MESSAGES.REGISTRATION_SUCCESS });
         })
         .catch(error => {
