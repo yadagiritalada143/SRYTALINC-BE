@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import UserModel from '../model/userModel';
 import dotenv from 'dotenv';
 import csrf from 'csrf-token';
+import UserModel from '../../model/userModel';
+import VisitorsCountModel from '../../model/visitorsCountModel';
+
 dotenv.config();
-const SECRET_KEY = process.env.SECRET_KEY!;
 
 interface LoginCredentials {
     email: string;
@@ -20,6 +21,19 @@ interface AuthResponse {
     applicationWalkThrough?: number;
     firstName?: string;
     lastName?: string;
+}
+
+const SECRET_KEY = process.env.SECRET_KEY!;
+const SALT_ROUNDS = 10;
+const hashPassword = async (password: string) => {
+    return await bcrypt.hash(password, SALT_ROUNDS);
+};
+
+const updateVisitorCount = async () => {
+    const getVisitorCount = await VisitorsCountModel.find().then((visitorsCount: any) => visitorsCount);
+    const currentVisitorCount = getVisitorCount[0].visitorCount;
+    await VisitorsCountModel.updateOne({ visitorCount: currentVisitorCount + 1, lastUpdatedAt: Date.now() })
+    return currentVisitorCount;
 }
 
 const createCSRFToken = (): Promise<string> => {
@@ -57,8 +71,5 @@ const authenticateAccount = ({ email, password }: LoginCredentials): Promise<Aut
     });
 };
 
-const loginService = {
-    authenticateAccount,
-    createCSRFToken
-}
-export default loginService;
+
+export default { updateVisitorCount, createCSRFToken, authenticateAccount };

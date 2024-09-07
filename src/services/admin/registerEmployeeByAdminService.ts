@@ -1,5 +1,5 @@
-import UserModel from "../model/userModel";
-import IUser from "../interfaces/user";
+import UserModel from "../../model/userModel";
+import IUser from "../../interfaces/user";
 import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = 10;

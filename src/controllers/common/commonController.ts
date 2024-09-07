@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import loginServices from '../services/login';
-import { LOGIN_ERROR_MESSAGE } from '../constants/errorMessages';
+import commonService from '../../services/common/manageCommonService';
+import { COMMON_ERRORS, LOGIN_ERROR_MESSAGE } from '../../constants/commonErrorMessages';
+import commonServices from '../../services/common/manageCommonService';
 
 const login = (req: Request, res: Response): any => {
     const { email, password } = req.body;
-    loginServices
+    commonServices
         .authenticateAccount({ email, password })
         .then((authResponse: any) => {
             if (authResponse.success) {
-                return loginServices.createCSRFToken().then(token => {
+                return commonServices.createCSRFToken().then((token: any) => {
                     res.set('X-CSRF-Token', token);
                     res.cookie('jwt', authResponse.token);
                     res.json({
@@ -26,10 +27,22 @@ const login = (req: Request, res: Response): any => {
                 res.status(401).json({ success: false, message: LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD });
             }
         })
-        .catch(error => {
+        .catch((error: any) => {
             console.error(error);
             res.status(500).json({ success: false, message: LOGIN_ERROR_MESSAGE.INTERNAL_SERVER_ERROR });
         });
 };
 
-export default { login };
+const updateVisitorCount = (req: Request, res: Response) => {
+    commonService
+        .updateVisitorCount()
+        .then((visitorsCountResponse: any) => {
+            res.status(200).json({ visitorCount: visitorsCountResponse });
+        })
+        .catch((error: any) => {
+            console.error(`Error in updating visitors count: ${error}`);
+            res.status(500).json({ success: false, message: COMMON_ERRORS.VISITORS_COUNT_UPDATING_ERROR });
+        });
+}
+
+export default { login, updateVisitorCount }
