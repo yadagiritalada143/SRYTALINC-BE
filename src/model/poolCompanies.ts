@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import { IPoolcompanies } from '../interfaces/poolcompanies';
+import UserModel from '../model/userModel';
 
 const PoolCompaniesSchema = new mongoose.Schema({
     id: { type: mongoose.Schema.Types.ObjectId },
@@ -21,6 +22,11 @@ const PoolCompaniesSchema = new mongoose.Schema({
         phone: { type: mongoose.Schema.Types.String }
     },
     status: { type: mongoose.Schema.Types.String },
+    comments: [{
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: UserModel },
+        comment: { type: mongoose.Schema.Types.String },
+        updateAt: { type: mongoose.Schema.Types.Date }
+    }],
     createdAt: { type: mongoose.Schema.Types.Date },
     lastUpdatedAt: { type: mongoose.Schema.Types.Date }
 }, {

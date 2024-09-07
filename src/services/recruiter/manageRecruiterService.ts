@@ -32,18 +32,16 @@ const getPoolCompanyDetails = (): Promise<any> => {
 }
 
 
-const getPoolCompanyDetailsById = (id: string): Promise<any> => {
-    return new Promise((resolve, reject) => {
-        PoolCompaniesModel
-            .findOne({ _id: id })
-            .then((poolCompanyResponse: any) => {
-                resolve({ success: true, poolCompanyResponse: poolCompanyResponse })
-            })
-            .catch((error: any) => {
-                console.log(`Error in fetching pool company at service level: ${error}`)
-                reject({ success: false });
-            })
-    })
+const getPoolCompanyDetailsById = async (id: string) => {
+    let poolCompanyDetails = await PoolCompaniesModel
+        .findOne({ _id: id })
+        .populate('comments.userId', 'firstName lastName');
+
+    if (poolCompanyDetails && poolCompanyDetails.comments) {
+        poolCompanyDetails.comments.sort((a, b) => b.updateAt - a.updateAt);
+    }
+
+    return poolCompanyDetails;
 }
 
 const addPoolCompany = async (companyDetailsToAdd: IPoolcompanies): Promise<any> => {

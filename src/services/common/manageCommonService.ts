@@ -58,7 +58,7 @@ const authenticateAccount = ({ email, password }: LoginCredentials): Promise<Aut
                         if (!isPasswordValid) {
                             resolve({ success: false });
                         } else {
-                            const token = jwt.sign({ email: user.email }, SECRET_KEY, { expiresIn: '1h' });
+                            const token = jwt.sign({ email: user.email, userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
                             resolve({ success: true, userRole: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, applicationWalkThrough: user.applicationWalkThrough, token, firstName: user.firstName, lastName: user.lastName });
                         }
                     });

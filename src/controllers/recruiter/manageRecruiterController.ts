@@ -19,8 +19,8 @@ const getPoolCompanyDetailsById = (req: Request, res: Response) => {
     const { id } = req.params;
     manageRecruiterService
         .getPoolCompanyDetailsById(id)
-        .then((getPoolServicesResponse: IPoolCompanyResponse) => {
-            res.status(200).json(getPoolServicesResponse);
+        .then((getPoolServicesResponse: any) => {
+            res.status(200).json({ success: true, poolCompanyResponse: getPoolServicesResponse });
         })
         .catch((error: any) => {
             console.log(`Error while fetching pool company details at controller level: ${error}`);
