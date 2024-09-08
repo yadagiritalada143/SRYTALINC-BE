@@ -9,3 +9,7 @@ export const LOGIN_ERROR_MESSAGE = {
     INTERNAL_SERVER_ERROR: 'Internal server error !',
     INVALID_INPUT: 'Invalid input. Please provide a valid email/password !'
 };
+
+export const EMAIL_ERROR_MESSAGE = {
+    SEND_NOTIFICATION_ERROR: 'Error in sending mail !'
+};
