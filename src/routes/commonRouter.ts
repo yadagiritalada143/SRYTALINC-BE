@@ -4,6 +4,9 @@ import sendContactUsMailController from '../controllers/common/sendContactUsMail
 
 const commonRouter: Router = express.Router();
 
+commonRouter.get('/', (req, res) => {
+    res.status(200).json({ message: 'Successfully server up and running !' });
+});
 commonRouter.get('/getVisitorCount', commonController.updateVisitorCount);
 commonRouter.post('/sendContactUsMail', sendContactUsMailController.sendContactUsMail);
 
