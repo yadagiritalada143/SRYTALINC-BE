@@ -6,6 +6,11 @@ const addCommentByRecruiter = (req: Request, res: Response) => {
     addCommentByRecruiterService
         .addCommentByRecruiter(req.body)
         .then((responseAfterCommentAdded: any) => {
+
+            if (responseAfterCommentAdded && responseAfterCommentAdded.comments) {
+                responseAfterCommentAdded.comments.sort((a: any, b: any) => b.updateAt - a.updateAt);
+            }
+
             res.status(200).json({ responseAfterCommentAdded });
         })
         .catch((error: any) => {
