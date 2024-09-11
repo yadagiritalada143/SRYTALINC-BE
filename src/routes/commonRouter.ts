@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import commonController from '../controllers/common/commonController';
 import sendContactUsMailController from '../controllers/common/sendContactUsMailController';
+import updateApplicationWalkThroughController from '../controllers/common/updateApplicationWalkThroughController';
 
 const commonRouter: Router = express.Router();
 
@@ -9,5 +10,6 @@ commonRouter.get('/', (req, res) => {
 });
 commonRouter.get('/getVisitorCount', commonController.updateVisitorCount);
 commonRouter.post('/sendContactUsMail', sendContactUsMailController.sendContactUsMail);
+commonRouter.post('/updateApplicationWalkThrough', updateApplicationWalkThroughController.updateApplicationWalkThrough);
 
 export default commonRouter;
