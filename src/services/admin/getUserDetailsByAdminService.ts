@@ -5,16 +5,16 @@ interface FetchUserResponse {
     userDetails?: any;
 }
 
-const getEmployeeDetailsByAdmin = (email: string): Promise<FetchUserResponse> => {
+const getEmployeeDetailsByAdmin = (id: string): Promise<FetchUserResponse> => {
     return new Promise((resolve, reject) => {
-        UserModel.findOne({ email })
+        UserModel.findOne({ _id: id })
             .populate('bloodGroup')
             .populate('employmentType')
             .populate('employeeRole')
             .populate('organization')
             .then((user: any) => {
                 if (!user) {
-                    resolve({ success: false });
+                    reject({ success: false });
                 } else {
                     resolve({
                         success: true,
