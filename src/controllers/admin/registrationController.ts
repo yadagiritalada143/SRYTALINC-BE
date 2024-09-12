@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import adminSignUpService from '../../services/admin/registerEmployeeByAdminService';
 import { ERRORS, ACCOUNT_MESSAGES } from '../../constants/registrationMessages';
+import utilService from '../../util/sendRegistrationOTPEmail';
 
 const randomPasswordGenerate = () => {
-    return (Math.floor(Math.random() * 90000) + 10000) + '';
+    return (Math.floor(Math.random() * 90000000) + 10000000) + '';
 }
 
 const register = (req: Request, res: Response) => {
@@ -26,7 +27,7 @@ const register = (req: Request, res: Response) => {
         })
         .then(responseAfterRegistration => {
             if (responseAfterRegistration.id) {
-                // TODO: Need to send an EMAIL to Employee with Email and temporary password
+                utilService.sendOTPEmail(newRegistrationData.email, randomPassword);
             }
             return res.status(201).json({ message: ACCOUNT_MESSAGES.REGISTRATION_SUCCESS });
         })
