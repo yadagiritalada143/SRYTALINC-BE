@@ -10,7 +10,7 @@ const adminRouter: Router = express.Router();
 
 adminRouter.post('/login', commonController.login);
 adminRouter.post('/registerEmployeeByAdmin', registerEmployeeByAdminController.register);
-adminRouter.get('/getEmployeeDetailsByAdmin/:email', getEmployeeDetailsByAdminController.getUserDetails);
+adminRouter.get('/getEmployeeDetailsByAdmin/:id', getEmployeeDetailsByAdminController.getUserDetails);
 adminRouter.put('/updateEmployeeDetailsByAdmin', validateProfileRequest(userSchema), updateEmployeeDetailsByAdminController.updateProfile);
 
 export default adminRouter;

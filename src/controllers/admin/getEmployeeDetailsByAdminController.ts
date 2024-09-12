@@ -5,7 +5,7 @@ import { COMMON_ERRORS } from '../../constants/commonErrorMessages';
 
 const getUserDetails = (req: Request, res: Response) => {
     adminService
-        .getEmployeeDetailsByAdmin(req.params.email)
+        .getEmployeeDetailsByAdmin(req.params.id)
         .then(fetchUserDetailsResponse => {
             res.status(200).json(fetchUserDetailsResponse);
         })
