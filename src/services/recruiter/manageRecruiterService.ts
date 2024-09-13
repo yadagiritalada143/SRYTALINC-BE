@@ -45,6 +45,8 @@ const getPoolCompanyDetailsById = async (id: string) => {
 }
 
 const addPoolCompany = async (companyDetailsToAdd: IPoolcompanies): Promise<any> => {
+    companyDetailsToAdd.createdAt = new Date();
+    companyDetailsToAdd.lastUpdatedAt = new Date();
     const poolCompanyDataToSave: any = new PoolCompaniesModel({ ...companyDetailsToAdd });
 
     const result = await poolCompanyDataToSave.save();
