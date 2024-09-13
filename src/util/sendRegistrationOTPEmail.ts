@@ -14,39 +14,36 @@ const emailConfiguration: any = {
     }
 }
 
-const sendOTPEmail = async (userName: string, tempPassword: string) => {
+const sendOTPEmail = async (firstName: string, lastName: string, userName: string, tempPassword: string) => {
     try {
         const transporter = nodemailer.createTransport(emailConfiguration);
         const mailBody = `     
-        <html>
-             <body>
-                 <p>Hello, ${userName},</p>
-            
-                <p>
-                Below are the credentials to log into the system. Please note that you must
-                change your password after successfully logging in with your username and
-                temporary password.
-                </p>
+            <html>
+                <body>
+                    <p>Hello <b>${firstName} ${lastName}</b>,</p>
                 
-                <p>
-                Click here to 
-                <a href="https://srytal-inc.netlify.app/srytalinc/employee/login">Login</a> 
-                or use the link below:
-                </p>
-            
-                <p><b>https://www.xxxx.com/companyId/employee/login</b></p>
+                    <p>
+                        Below are the credentials to log into the system. Please note that you must
+                        change your password after successfully login with your username and
+                        temporary password.
+                    </p>
+                    
+                    <p>
+                    Click here to <a href="https://srytal-inc.netlify.app/srytalinc/employee/login">Login</a> 
+                    or use the link below: <b>https://srytal-inc.netlify.app/srytalinc/employee/login</b>
+                    </p>
 
-                <p><b>Username:</b> ${userName}</p>
-                <p><b>Temporary password:</b> ${tempPassword}</p>
+                    <p><b>Username:</b> ${userName}</p>
+                    <p><b>Temporary password:</b> ${tempPassword}</p>
 
-                <p><b>Note:</b> Please change your password as soon as possible before it expires.</p>
-                
-                <br/>
-                <p>Regards,</p>
-                <p><b>SRYTAL</b></p>
-            </body>
-          </html>
-            `;
+                    <p><b><u>Note:</u></b> Please change your password as soon as possible before it expires !</p>
+                    
+                    <br/>
+                    <p>Regards,</p>
+                    <p><b>SRYTAL</b></p>
+                </body>
+            </html>
+                `;
 
         const mailOptions = {
             from: process.env.EMAIL_FROM,

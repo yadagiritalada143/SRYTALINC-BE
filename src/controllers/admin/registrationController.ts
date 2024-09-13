@@ -27,7 +27,7 @@ const register = (req: Request, res: Response) => {
         })
         .then(responseAfterRegistration => {
             if (responseAfterRegistration.id) {
-                utilService.sendOTPEmail(newRegistrationData.email, randomPassword);
+                utilService.sendOTPEmail(newRegistrationData.firstName, newRegistrationData.lastName, newRegistrationData.email, randomPassword);
             }
             return res.status(201).json({ message: ACCOUNT_MESSAGES.REGISTRATION_SUCCESS });
         })
