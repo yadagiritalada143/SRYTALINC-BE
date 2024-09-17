@@ -15,7 +15,7 @@ const updatePassword = async (updatePasswordDetails: any) => {
                         } else {
                             registrationService.hashPassword(updatePasswordDetails.newPassword)
                                 .then(async (hashedNewPassword: string) => {
-                                    const result = await UserModel.updateOne({ _id: updatePasswordDetails.id }, { password: hashedNewPassword });
+                                    const result = await UserModel.updateOne({ _id: updatePasswordDetails.id }, { password: hashedNewPassword }, {passwordResetRequired: false});
                                     resolve({ success: true, message: 'Password updated Successfully !' });
                                 })
                                 .catch((error: any) => {
