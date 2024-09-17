@@ -4,7 +4,7 @@ import registrationService from '../admin/registerEmployeeByAdminService';
 
 const updatePassword = async (updatePasswordDetails: any) => {
     return new Promise(async (resolve, reject) => {
-        await UserModel.findOne({ _id: updatePasswordDetails.id })
+        await UserModel.findOne({ _id: updatePasswordDetails.userId })
             .then((user: any) => {
                 if (!user) {
                     resolve({ success: false, message: 'User not Exists !' });
@@ -15,7 +15,7 @@ const updatePassword = async (updatePasswordDetails: any) => {
                         } else {
                             registrationService.hashPassword(updatePasswordDetails.newPassword)
                                 .then(async (hashedNewPassword: string) => {
-                                    const result = await UserModel.updateOne({ _id: updatePasswordDetails.id }, { password: hashedNewPassword }, {passwordResetRequired: false});
+                                    const result = await UserModel.updateOne({ _id: updatePasswordDetails.id }, { password: hashedNewPassword, passwordResetRequired: false });
                                     resolve({ success: true, message: 'Password updated Successfully !' });
                                 })
                                 .catch((error: any) => {

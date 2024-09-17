@@ -3,6 +3,7 @@ import commonController from '../controllers/common/commonController';
 import sendContactUsMailController from '../controllers/common/sendContactUsMailController';
 import updateApplicationWalkThroughController from '../controllers/common/updateApplicationWalkThroughController';
 import updatePasswordController from '../controllers/common/updatePasswordController';
+import validateJWT from '../middlewares/validateJWT';
 
 const commonRouter: Router = express.Router();
 
@@ -12,6 +13,6 @@ commonRouter.get('/', (req, res) => {
 commonRouter.get('/getVisitorCount', commonController.updateVisitorCount);
 commonRouter.post('/sendContactUsMail', sendContactUsMailController.sendContactUsMail);
 commonRouter.post('/updateApplicationWalkThrough', updateApplicationWalkThroughController.updateApplicationWalkThrough);
-commonRouter.post('/updatePassword', updatePasswordController.updatePassword);
+commonRouter.post('/updatePassword', validateJWT, updatePasswordController.updatePassword);
 
 export default commonRouter;
