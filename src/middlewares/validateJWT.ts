@@ -13,7 +13,8 @@ const validateJWT = (req: Request, res: Response, next: NextFunction) => {
             if (error) {
                 return res.status(403).json({ message: "Invalid token !" });
             }
-            req.body.userId = decoded.userId;
+            req.body.userId = decoded.userId || '';
+            req.body.organizationId = decoded.organizationId || '';
             next();
         });
     } else {

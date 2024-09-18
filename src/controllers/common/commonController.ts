@@ -24,7 +24,10 @@ const login = (req: Request, res: Response): any => {
                     });
                 });
             } else {
-                res.status(401).json({ success: false, message: LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD });
+                res.status(401).json({
+                    success: false,
+                    message: LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD
+                });
             }
         })
         .catch((error: any) => {
