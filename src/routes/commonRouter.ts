@@ -3,6 +3,7 @@ import commonController from '../controllers/common/commonController';
 import sendContactUsMailController from '../controllers/common/sendContactUsMailController';
 import updateApplicationWalkThroughController from '../controllers/common/updateApplicationWalkThroughController';
 import updatePasswordController from '../controllers/common/updatePasswordController';
+import getOrganizationThemesController from '../controllers/common/getOrganizationThemesController';
 import validateJWT from '../middlewares/validateJWT';
 
 const commonRouter: Router = express.Router();
@@ -14,5 +15,6 @@ commonRouter.get('/getVisitorCount', commonController.updateVisitorCount);
 commonRouter.post('/sendContactUsMail', sendContactUsMailController.sendContactUsMail);
 commonRouter.post('/updateApplicationWalkThrough', updateApplicationWalkThroughController.updateApplicationWalkThrough);
 commonRouter.post('/updatePassword', validateJWT, updatePasswordController.updatePassword);
+commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController.getOrgazationThemes);
 
 export default commonRouter;
