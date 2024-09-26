@@ -8,7 +8,21 @@ const OrganizationThemesSchema = new mongoose.Schema({
         organization: { type: mongoose.Schema.Types.String },
         logo: { type: mongoose.Schema.Types.String },
         theme: {
-
+            primaryColor : { type: mongoose.Schema.Types.String },
+            colorScheme : { type: mongoose.Schema.Types.String },
+            fontFamily : { type: mongoose.Schema.Types.String },
+            button :{
+                color : { type: mongoose.Schema.Types.String },
+                textColor : { type: mongoose.Schema.Types.String },
+            },
+            colors :{
+                primary : [{ type: mongoose.Schema.Types.Array }],
+                secondary : [{ type: mongoose.Schema.Types.Array }]
+            },
+            color : { type: mongoose.Schema.Types.String },
+            backgroundColor : { type: mongoose.Schema.Types.String },
+            borderColor : { type: mongoose.Schema.Types.String },
+            headerBackgroundColor : { type: mongoose.Schema.Types.String },
         }
     }
 }, {
