@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const userModel_1 = __importDefault(require("../../model/userModel"));
-const getEmployeeDetailsByAdmin = (email) => {
+const getEmployeeDetailsByAdmin = (id) => {
     return new Promise((resolve, reject) => {
-        userModel_1.default.findOne({ email })
+        userModel_1.default.findOne({ _id: id })
             .populate('bloodGroup')
             .populate('employmentType')
             .populate('employeeRole')
             .populate('organization')
             .then((user) => {
             if (!user) {
-                resolve({ success: false });
+                reject({ success: false });
             }
             else {
                 resolve({

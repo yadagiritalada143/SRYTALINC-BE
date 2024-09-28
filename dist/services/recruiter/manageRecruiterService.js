@@ -51,6 +51,8 @@ const getPoolCompanyDetailsById = (id) => __awaiter(void 0, void 0, void 0, func
     return poolCompanyDetails;
 });
 const addPoolCompany = (companyDetailsToAdd) => __awaiter(void 0, void 0, void 0, function* () {
+    companyDetailsToAdd.createdAt = new Date();
+    companyDetailsToAdd.lastUpdatedAt = new Date();
     const poolCompanyDataToSave = new poolCompanies_1.default(Object.assign({}, companyDetailsToAdd));
     const result = yield poolCompanyDataToSave.save();
     return result;
