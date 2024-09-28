@@ -12,7 +12,6 @@ const employeePasswordResetByAdmin = (req: Request, res: Response) => {
             } else {
                 res.status(400).json({ success: false, message: ADMIN_ERROR_MESSAGES.RESET_EMPLOYEE_PASSWORD_ERROR });
             }
-
         })
         .catch((error: any) => {
             console.log('Error occured while asking to reset the password:', error)
