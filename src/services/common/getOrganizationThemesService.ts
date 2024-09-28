@@ -1,5 +1,14 @@
-const getOrgThemes = (organization_name: string) => {
+import OrganizationThemesModel from '../../model/organizationThemesModel';
 
+const getOrgThemes = async (organization_name: string): Promise<any> => {
+    try {
+        const result = await OrganizationThemesModel.findOne({ organization_name });
+        return result;
+    } catch (error: any) {
+        console.log('Error occured while fetching the themes: ', error);
+        return error;
+
+    }
 }
 
-export default { getOrgThemes };
+export default { getOrgThemes }

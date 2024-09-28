@@ -15,6 +15,6 @@ commonRouter.get('/getVisitorCount', commonController.updateVisitorCount);
 commonRouter.post('/sendContactUsMail', sendContactUsMailController.sendContactUsMail);
 commonRouter.post('/updateApplicationWalkThrough', updateApplicationWalkThroughController.updateApplicationWalkThrough);
 commonRouter.post('/updatePassword', validateJWT, updatePasswordController.updatePassword);
-commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController.getOrgazationThemes);
+commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController.getOrganizationThemes);
 
 export default commonRouter;
