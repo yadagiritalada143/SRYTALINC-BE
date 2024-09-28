@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.APPLICATION_WALK_THROUGH_ERROR_MESSAGE = exports.EMAIL_ERROR_MESSAGE = exports.LOGIN_ERROR_MESSAGE = exports.COMMON_ERRORS = void 0;
+exports.ORGANIZATION_THEMES_ERROR_MESSAGES = exports.APPLICATION_WALK_THROUGH_ERROR_MESSAGE = exports.EMAIL_ERROR_MESSAGE = exports.LOGIN_ERROR_MESSAGE = exports.COMMON_ERRORS = void 0;
 exports.COMMON_ERRORS = {
     USER_FETCHING_ERROR: 'An error occurred while fetching details, Please try again !',
     USER_UPDATING_ERROR: 'An error occurred while updating details, Please try again !',
@@ -16,4 +16,7 @@ exports.EMAIL_ERROR_MESSAGE = {
 };
 exports.APPLICATION_WALK_THROUGH_ERROR_MESSAGE = {
     UPDATE_APP_WALK_THROUGH_ERROR: 'Error occured while updating Application walk through Flag !'
+};
+exports.ORGANIZATION_THEMES_ERROR_MESSAGES = {
+    THEMES_FETCHING_ERROR: 'Error occured while getting the themes !!'
 };
