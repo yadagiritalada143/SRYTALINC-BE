@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import getOrganizationThemesService from '../../services/common/getOrganizationThemesService';
 import { ORGANIZATION_THEMES_ERROR_MESSAGES } from '../../constants/commonErrorMessages';
-import { IThemesResponse } from '../../interfaces/organizationtheme';
 
 const getOrganizationThemes = (req: Request, res: Response): any => {
     const { organization_name } = req.params;
