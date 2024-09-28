@@ -12,6 +12,7 @@ const register = (req: Request, res: Response) => {
     const randomPassword = randomPasswordGenerate();
     newRegistrationData.password = randomPassword;
     newRegistrationData.passwordResetRequired = true;
+    newRegistrationData.organization = newRegistrationData.organizationId;
     newRegistrationData.applicationWalkThrough = 1;
     adminSignUpService
         .isAccountPresent(newRegistrationData.email)

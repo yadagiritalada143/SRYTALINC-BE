@@ -14,7 +14,7 @@ const getAllEmployeeDetailsByAdminController_1 = __importDefault(require("../con
 const validateJWT_1 = __importDefault(require("../middlewares/validateJWT"));
 const adminRouter = express_1.default.Router();
 adminRouter.post('/login', commonController_1.default.login);
-adminRouter.post('/registerEmployeeByAdmin', registrationController_1.default.register);
+adminRouter.post('/registerEmployeeByAdmin', validateJWT_1.default, registrationController_1.default.register);
 adminRouter.get('/getEmployeeDetailsByAdmin/:id', getEmployeeDetailsByAdminController_1.default.getUserDetails);
 adminRouter.put('/updateEmployeeDetailsByAdmin', (0, validateProfileUpdate_1.default)(userSchema_1.default), updateEmployeeDetailsByAdminController_1.default.updateProfile);
 adminRouter.get('/getAllEmployeeDetailsByAdmin', validateJWT_1.default, getAllEmployeeDetailsByAdminController_1.default.getAllEmployeeDetails);

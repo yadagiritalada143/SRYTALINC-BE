@@ -14,6 +14,7 @@ const register = (req, res) => {
     const randomPassword = randomPasswordGenerate();
     newRegistrationData.password = randomPassword;
     newRegistrationData.passwordResetRequired = true;
+    newRegistrationData.organization = newRegistrationData.organizationId;
     newRegistrationData.applicationWalkThrough = 1;
     registerEmployeeByAdminService_1.default
         .isAccountPresent(newRegistrationData.email)

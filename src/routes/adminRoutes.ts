@@ -11,7 +11,7 @@ import validateJWT from '../middlewares/validateJWT';
 const adminRouter: Router = express.Router();
 
 adminRouter.post('/login', commonController.login);
-adminRouter.post('/registerEmployeeByAdmin', registerEmployeeByAdminController.register);
+adminRouter.post('/registerEmployeeByAdmin', validateJWT, registerEmployeeByAdminController.register);
 adminRouter.get('/getEmployeeDetailsByAdmin/:id', getEmployeeDetailsByAdminController.getUserDetails);
 adminRouter.put('/updateEmployeeDetailsByAdmin', validateProfileRequest(userSchema), updateEmployeeDetailsByAdminController.updateProfile);
 adminRouter.get('/getAllEmployeeDetailsByAdmin', validateJWT, getAllEmployeeDetailsByAdminController.getAllEmployeeDetails);
