@@ -18,7 +18,6 @@ export const APPLICATION_WALK_THROUGH_ERROR_MESSAGE = {
     UPDATE_APP_WALK_THROUGH_ERROR: 'Error occured while updating Application walk through Flag !'
 };
 
-
 export const ORGANIZATION_THEMES_ERROR_MESSAGES = {
     THEMES_FETCHING_ERROR: 'Error occured while getting the themes !!'
 }
