@@ -7,6 +7,7 @@ import connectToDb from '../src/config/databaseConfig';
 import commonRouter from './routes/commonRouter';
 import adminRouter from './routes/adminRoutes';
 import recruiterRouter from './routes/recruiterRoutes';
+import superAdminRouter from './routes/superAdminRoutes';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ connectToDb();
 app.use('/', commonRouter);
 app.use('/admin', adminRouter);
 app.use('/recruiter', recruiterRouter);
+app.use('/superadmin', superAdminRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at  http://localhost:${port}`);
