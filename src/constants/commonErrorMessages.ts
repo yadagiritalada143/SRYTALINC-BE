@@ -21,3 +21,8 @@ export const APPLICATION_WALK_THROUGH_ERROR_MESSAGE = {
 export const ORGANIZATION_THEMES_ERROR_MESSAGES = {
     THEMES_FETCHING_ERROR: 'Error occured while getting the themes !!'
 }
+
+// This handles all common errors for all employees/recruiters/admin 
+export const EMPLOYEE_ERRORS = {
+    EMPLOYEE_DETAILS_FETCHING_ERROR: 'An error occurred while fetching Employee details, Please try again !'
+};
