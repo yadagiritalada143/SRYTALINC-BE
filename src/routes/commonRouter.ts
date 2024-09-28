@@ -4,6 +4,7 @@ import sendContactUsMailController from '../controllers/common/sendContactUsMail
 import updateApplicationWalkThroughController from '../controllers/common/updateApplicationWalkThroughController';
 import updatePasswordController from '../controllers/common/updatePasswordController';
 import getOrganizationThemesController from '../controllers/common/getOrganizationThemesController';
+import getEmployeeDetailsController from '../controllers/common/getEmployeeDetailsController';
 import validateJWT from '../middlewares/validateJWT';
 
 const commonRouter: Router = express.Router();
@@ -11,10 +12,12 @@ const commonRouter: Router = express.Router();
 commonRouter.get('/', (req, res) => {
     res.status(200).json({ message: 'Successfully server up and running !' });
 });
+
 commonRouter.get('/getVisitorCount', commonController.updateVisitorCount);
 commonRouter.post('/sendContactUsMail', sendContactUsMailController.sendContactUsMail);
 commonRouter.post('/updateApplicationWalkThrough', updateApplicationWalkThroughController.updateApplicationWalkThrough);
 commonRouter.post('/updatePassword', validateJWT, updatePasswordController.updatePassword);
 commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController.getOrganizationThemes);
+commonRouter.get('/getEmployeeDetails', validateJWT, getEmployeeDetailsController.getEmployeeDetails);
 
 export default commonRouter;
