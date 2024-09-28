@@ -11,6 +11,7 @@ const commonController_1 = __importDefault(require("../controllers/common/common
 const userSchema_1 = __importDefault(require("../middlewares/schemas/userSchema"));
 const validateProfileUpdate_1 = __importDefault(require("../middlewares/validateProfileUpdate"));
 const getAllEmployeeDetailsByAdminController_1 = __importDefault(require("../controllers/admin/getAllEmployeeDetailsByAdminController"));
+const employeePasswordResetByAdminController_1 = __importDefault(require("../controllers/admin/employeePasswordResetByAdminController"));
 const validateJWT_1 = __importDefault(require("../middlewares/validateJWT"));
 const adminRouter = express_1.default.Router();
 adminRouter.post('/login', commonController_1.default.login);
@@ -18,4 +19,5 @@ adminRouter.post('/registerEmployeeByAdmin', validateJWT_1.default, registration
 adminRouter.get('/getEmployeeDetailsByAdmin/:id', getEmployeeDetailsByAdminController_1.default.getUserDetails);
 adminRouter.put('/updateEmployeeDetailsByAdmin', (0, validateProfileUpdate_1.default)(userSchema_1.default), updateEmployeeDetailsByAdminController_1.default.updateProfile);
 adminRouter.get('/getAllEmployeeDetailsByAdmin', validateJWT_1.default, getAllEmployeeDetailsByAdminController_1.default.getAllEmployeeDetails);
+adminRouter.post('/employeePasswordResetByAdmin', employeePasswordResetByAdminController_1.default.employeePasswordResetByAdmin);
 exports.default = adminRouter;
