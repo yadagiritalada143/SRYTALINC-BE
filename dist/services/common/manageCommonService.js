@@ -54,7 +54,7 @@ const authenticateAccount = ({ email, password }) => {
                         resolve({ success: false });
                     }
                     else {
-                        const token = jsonwebtoken_1.default.sign({ email: user.email, userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
+                        const token = jsonwebtoken_1.default.sign({ email: user.email, userId: user.id, organizationId: user.organization }, SECRET_KEY, { expiresIn: '1h' });
                         resolve({ success: true, userRole: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, applicationWalkThrough: user.applicationWalkThrough, token, firstName: user.firstName, lastName: user.lastName });
                     }
                 });

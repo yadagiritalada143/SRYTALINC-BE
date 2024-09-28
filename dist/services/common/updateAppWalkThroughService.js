@@ -12,23 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const poolCompanies_1 = __importDefault(require("../../model/poolCompanies"));
-const addCommentByRecruiter = (_a) => __awaiter(void 0, [_a], void 0, function* ({ id, comment, userId }) {
-    let result = yield poolCompanies_1.default.findByIdAndUpdate(id, {
-        lastUpdatedAt: new Date(),
-        $push: {
-            comments: {
-                comment,
-                userId,
-                updateAt: new Date()
-            }
-        }
-    }, { new: true });
-    if (result && result.id) {
-        result = yield poolCompanies_1.default
-            .findOne({ _id: id })
-            .populate('comments.userId', 'firstName lastName');
+const userModel_1 = __importDefault(require("../../model/userModel"));
+const updateAppWalkThrough = (applicationWalkThroughToUpdate) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield userModel_1.default.updateOne({ _id: applicationWalkThroughToUpdate.user_id }, { applicationWalkThrough: Number(applicationWalkThroughToUpdate.applicationWalkThrough) });
+        return result;
     }
-    return result;
+    catch (error) {
+        console.log(`Error occured while updating applicationwalk through: ${error}`);
+        return error;
+    }
 });
-exports.default = { addCommentByRecruiter };
+exports.default = { updateAppWalkThrough };

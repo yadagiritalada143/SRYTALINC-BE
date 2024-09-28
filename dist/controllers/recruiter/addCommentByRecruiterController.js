@@ -9,6 +9,9 @@ const addCommentByRecruiter = (req, res) => {
     addCommentByRecruiterService_1.default
         .addCommentByRecruiter(req.body)
         .then((responseAfterCommentAdded) => {
+        if (responseAfterCommentAdded && responseAfterCommentAdded.comments) {
+            responseAfterCommentAdded.comments.sort((a, b) => b.updateAt - a.updateAt);
+        }
         res.status(200).json({ responseAfterCommentAdded });
     })
         .catch((error) => {

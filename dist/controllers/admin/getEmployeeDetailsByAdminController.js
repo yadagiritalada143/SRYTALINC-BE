@@ -7,7 +7,7 @@ const getUserDetailsByAdminService_1 = __importDefault(require("../../services/a
 const commonErrorMessages_1 = require("../../constants/commonErrorMessages");
 const getUserDetails = (req, res) => {
     getUserDetailsByAdminService_1.default
-        .getEmployeeDetailsByAdmin(req.params.email)
+        .getEmployeeDetailsByAdmin(req.params.id)
         .then(fetchUserDetailsResponse => {
         res.status(200).json(fetchUserDetailsResponse);
     })

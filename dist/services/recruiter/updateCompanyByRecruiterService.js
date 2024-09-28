@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const poolCompanies_1 = __importDefault(require("../../model/poolCompanies"));
 const updatePoolCompanyDetails = (detailsToUpdate) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        detailsToUpdate.lastUpdatedAt = new Date();
         const result = yield poolCompanies_1.default.updateOne({ _id: detailsToUpdate.id }, detailsToUpdate);
         return { success: result.acknowledged };
     }

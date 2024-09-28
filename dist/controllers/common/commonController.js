@@ -28,7 +28,10 @@ const login = (req, res) => {
             });
         }
         else {
-            res.status(401).json({ success: false, message: commonErrorMessages_1.LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD });
+            res.status(401).json({
+                success: false,
+                message: commonErrorMessages_1.LOGIN_ERROR_MESSAGE.INVALID_EMAIL_PASSWORD
+            });
         }
     })
         .catch((error) => {
