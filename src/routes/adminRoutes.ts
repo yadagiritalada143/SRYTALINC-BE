@@ -6,6 +6,7 @@ import commonController from '../controllers/common/commonController';
 import userSchema from '../middlewares/schemas/userSchema';
 import validateProfileRequest from '../middlewares/validateProfileUpdate';
 import getAllEmployeeDetailsByAdminController from '../controllers/admin/getAllEmployeeDetailsByAdminController';
+import employeePasswordResetByAdminController from '../controllers/admin/employeePasswordResetByAdminController';
 import validateJWT from '../middlewares/validateJWT';
 
 const adminRouter: Router = express.Router();
@@ -15,5 +16,6 @@ adminRouter.post('/registerEmployeeByAdmin', validateJWT, registerEmployeeByAdmi
 adminRouter.get('/getEmployeeDetailsByAdmin/:id', getEmployeeDetailsByAdminController.getUserDetails);
 adminRouter.put('/updateEmployeeDetailsByAdmin', validateProfileRequest(userSchema), updateEmployeeDetailsByAdminController.updateProfile);
 adminRouter.get('/getAllEmployeeDetailsByAdmin', validateJWT, getAllEmployeeDetailsByAdminController.getAllEmployeeDetails);
+adminRouter.post('/employeePasswordResetByAdmin', employeePasswordResetByAdminController.employeePasswordResetByAdmin);
 
 export default adminRouter;
