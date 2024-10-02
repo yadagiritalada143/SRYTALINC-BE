@@ -6,6 +6,7 @@ import updatePasswordController from '../controllers/common/updatePasswordContro
 import getOrganizationThemesController from '../controllers/common/getOrganizationThemesController';
 import getEmployeeDetailsController from '../controllers/common/getEmployeeDetailsController';
 import uploadProfileImageController from '../controllers/common/uploadProfileImageController';
+import getProfileImageController from '../controllers/common/getProfileImageController';
 import validateJWT from '../middlewares/validateJWT';
 import upload from '../util/profileImagesFileUpload';
 
@@ -22,5 +23,6 @@ commonRouter.post('/updatePassword', validateJWT, updatePasswordController.updat
 commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController.getOrganizationThemes);
 commonRouter.get('/getEmployeeDetails', validateJWT, getEmployeeDetailsController.getEmployeeDetails);
 commonRouter.post('/uploadProfileImage', upload.single('profileImage'), validateJWT, uploadProfileImageController.uploadProfileImage);
+commonRouter.get('/getProfileImage', validateJWT, getProfileImageController.getProfileImage);
 
 export default commonRouter;
