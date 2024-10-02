@@ -11,6 +11,7 @@ const updatePasswordController_1 = __importDefault(require("../controllers/commo
 const getOrganizationThemesController_1 = __importDefault(require("../controllers/common/getOrganizationThemesController"));
 const getEmployeeDetailsController_1 = __importDefault(require("../controllers/common/getEmployeeDetailsController"));
 const uploadProfileImageController_1 = __importDefault(require("../controllers/common/uploadProfileImageController"));
+const getProfileImageController_1 = __importDefault(require("../controllers/common/getProfileImageController"));
 const validateJWT_1 = __importDefault(require("../middlewares/validateJWT"));
 const profileImagesFileUpload_1 = __importDefault(require("../util/profileImagesFileUpload"));
 const commonRouter = express_1.default.Router();
@@ -24,4 +25,5 @@ commonRouter.post('/updatePassword', validateJWT_1.default, updatePasswordContro
 commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController_1.default.getOrganizationThemes);
 commonRouter.get('/getEmployeeDetails', validateJWT_1.default, getEmployeeDetailsController_1.default.getEmployeeDetails);
 commonRouter.post('/uploadProfileImage', profileImagesFileUpload_1.default.single('profileImage'), validateJWT_1.default, uploadProfileImageController_1.default.uploadProfileImage);
+commonRouter.get('/getProfileImage', validateJWT_1.default, getProfileImageController_1.default.getProfileImage);
 exports.default = commonRouter;
