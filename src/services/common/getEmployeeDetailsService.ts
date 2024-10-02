@@ -1,3 +1,4 @@
+import path from 'path';
 import UserModel from '../../model/userModel';
 
 interface getEmployeeDetailsResponse {
@@ -26,7 +27,8 @@ const getEmployeeDetails = (id: string): Promise<getEmployeeDetailsResponse> => 
                             bloodGroup: employee.bloodGroup,
                             bankDetailsInfo: employee.bankDetailsInfo,
                             employeeRole: employee.employeeRole,
-                            organization: employee.organization
+                            organization: employee.organization,
+                            profileImage: path.resolve(__dirname, '../../assets', 'profileImages', employee.profileImage)
                         }
                     });
                 }

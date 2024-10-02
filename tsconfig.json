@@ -30,5 +30,8 @@
     "./dist",
     "__tests__",
     "jest.config.js"
+  ],
+  "include": [
+    "custom.d.ts"
   ]
 }

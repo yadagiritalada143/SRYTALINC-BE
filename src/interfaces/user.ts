@@ -11,6 +11,7 @@ interface IUser extends Document {
     userRole?: string;
     passwordResetRequired?: boolean;
     bankDetailsInfo?: BankDetailsInfo;
+    profileImage: string;
     bloodGroup?: mongoose.Schema.Types.ObjectId;
     employmentType?: mongoose.Schema.Types.ObjectId;
     employeeRole?: mongoose.Schema.Types.Array;
