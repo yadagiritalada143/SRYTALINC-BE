@@ -4,7 +4,7 @@
     "files": true
   },
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2017", // Specify a target, such as "es2017"
     "module": "commonjs",
     "rootDir": "./src",
     "moduleResolution": "node",
@@ -32,6 +32,7 @@
     "jest.config.js"
   ],
   "include": [
-    "custom.d.ts"
+    "src/**/*.ts", // Include all TypeScript files in the src directory
+    "custom.d.ts" // Include custom type definitions
   ]
 }

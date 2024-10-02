@@ -23,6 +23,7 @@ const UserSchema = new mongoose_1.default.Schema({
         accountNumber: { type: mongoose_1.default.Schema.Types.String },
         ifscCode: { type: mongoose_1.default.Schema.Types.String }
     },
+    profileImage: { type: mongoose_1.default.Schema.Types.String },
     employmentType: { type: mongoose_1.default.Schema.Types.ObjectId, ref: employmentTypeModel_1.default },
     employeeRole: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: employeeRole_1.default }],
     organization: { type: mongoose_1.default.Schema.Types.ObjectId, ref: organization_1.default },

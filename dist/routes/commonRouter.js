@@ -10,7 +10,9 @@ const updateApplicationWalkThroughController_1 = __importDefault(require("../con
 const updatePasswordController_1 = __importDefault(require("../controllers/common/updatePasswordController"));
 const getOrganizationThemesController_1 = __importDefault(require("../controllers/common/getOrganizationThemesController"));
 const getEmployeeDetailsController_1 = __importDefault(require("../controllers/common/getEmployeeDetailsController"));
+const uploadProfileImageController_1 = __importDefault(require("../controllers/common/uploadProfileImageController"));
 const validateJWT_1 = __importDefault(require("../middlewares/validateJWT"));
+const profileImagesFileUpload_1 = __importDefault(require("../util/profileImagesFileUpload"));
 const commonRouter = express_1.default.Router();
 commonRouter.get('/', (req, res) => {
     res.status(200).json({ message: 'Successfully server up and running !' });
@@ -21,4 +23,5 @@ commonRouter.post('/updateApplicationWalkThrough', updateApplicationWalkThroughC
 commonRouter.post('/updatePassword', validateJWT_1.default, updatePasswordController_1.default.updatePassword);
 commonRouter.get('/getOrganizationThemes/:organization_name', getOrganizationThemesController_1.default.getOrganizationThemes);
 commonRouter.get('/getEmployeeDetails', validateJWT_1.default, getEmployeeDetailsController_1.default.getEmployeeDetails);
+commonRouter.post('/uploadProfileImage', profileImagesFileUpload_1.default.single('profileImage'), validateJWT_1.default, uploadProfileImageController_1.default.uploadProfileImage);
 exports.default = commonRouter;
