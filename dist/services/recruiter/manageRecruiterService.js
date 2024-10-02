@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -41,20 +32,20 @@ const getPoolCompanyDetails = () => {
         });
     });
 };
-const getPoolCompanyDetailsById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    let poolCompanyDetails = yield poolCompanies_1.default
+const getPoolCompanyDetailsById = async (id) => {
+    let poolCompanyDetails = await poolCompanies_1.default
         .findOne({ _id: id })
         .populate('comments.userId', 'firstName lastName');
     if (poolCompanyDetails && poolCompanyDetails.comments) {
         poolCompanyDetails.comments.sort((a, b) => b.updateAt - a.updateAt);
     }
     return poolCompanyDetails;
-});
-const addPoolCompany = (companyDetailsToAdd) => __awaiter(void 0, void 0, void 0, function* () {
+};
+const addPoolCompany = async (companyDetailsToAdd) => {
     companyDetailsToAdd.createdAt = new Date();
     companyDetailsToAdd.lastUpdatedAt = new Date();
     const poolCompanyDataToSave = new poolCompanies_1.default(Object.assign({}, companyDetailsToAdd));
-    const result = yield poolCompanyDataToSave.save();
+    const result = await poolCompanyDataToSave.save();
     return result;
-});
+};
 exports.default = { getPoolCompanyDetails, getPoolCompanyDetailsById, addPoolCompany };

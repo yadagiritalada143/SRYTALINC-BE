@@ -22,5 +22,6 @@ exports.ORGANIZATION_THEMES_ERROR_MESSAGES = {
 };
 // This handles all common errors for all employees/recruiters/admin 
 exports.EMPLOYEE_ERRORS = {
-    EMPLOYEE_DETAILS_FETCHING_ERROR: 'An error occurred while fetching Employee details, Please try again !'
+    EMPLOYEE_DETAILS_FETCHING_ERROR: 'An error occurred while fetching Employee details, Please try again !',
+    EMPLOYEE_PROFILE_IMAGE_UPDATE_ERROR: 'Error occured while updating the Profile Image, Please try again !'
 };

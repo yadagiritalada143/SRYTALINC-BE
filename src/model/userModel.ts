@@ -20,10 +20,11 @@ const UserSchema = new mongoose.Schema({
         accountNumber: { type: mongoose.Schema.Types.String },
         ifscCode: { type: mongoose.Schema.Types.String }
     },
+    profileImage: { type: mongoose.Schema.Types.String },
     employmentType: { type: mongoose.Schema.Types.ObjectId, ref: Employmenttype },
     employeeRole: [{ type: mongoose.Schema.Types.ObjectId, ref: Employeerole }],
     organization: { type: mongoose.Schema.Types.ObjectId, ref: Organization },
-    applicationWalkThrough: {type: mongoose.Schema.Types.Number},
+    applicationWalkThrough: { type: mongoose.Schema.Types.Number },
     created_on: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
