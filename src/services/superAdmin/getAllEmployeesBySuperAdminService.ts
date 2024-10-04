@@ -18,6 +18,10 @@ const getAllEmployeeBySuperAdminService = (): Promise<FetchsuperadminEmployeeLis
                });
             }
          })
+         .catch((error: any) => {
+            console.error('Error in fetching superadmin Employee details:', error);
+            reject({ success: false });
+        });
    });
 
 }
