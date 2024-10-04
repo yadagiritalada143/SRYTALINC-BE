@@ -1,7 +1,6 @@
 import { Request,Response } from "express";
-import { COMMON_ERRORS } from '../../constants/commonErrorMessages';
+import {SUPERADMIN_ERROR} from '../../constants/superAdmin/superadminErrorMessage';
 import allEmployeesBySuperAdminServices from '../../services/superAdmin/getAllEmployeesBySuperAdminService'
-import { error } from "console";
 
 const getAllEmployeesBySuperAdmin=(req:Request,res:Response)=>{
 
@@ -12,8 +11,8 @@ const getAllEmployeesBySuperAdmin=(req:Request,res:Response)=>{
     })
     .catch(error=>{
         console.error(`Error in fetching all superadmin employee detals:${error} `);
-        res.status(500).json({ success: false, message: COMMON_ERRORS.FETCHING_ALLEMPLOYEE_ERROR });
+        res.status(500).json({ success: false, message: SUPERADMIN_ERROR.FETCHING_ALLSUPERADMIN_EMPLOYEE_ERROR });
         
-    })
+    });
 };
 export default {getAllEmployeesBySuperAdmin}
