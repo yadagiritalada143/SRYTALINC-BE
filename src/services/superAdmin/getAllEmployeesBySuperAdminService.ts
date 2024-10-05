@@ -24,5 +24,5 @@ const getAllEmployeeBySuperAdminService = (): Promise<FetchsuperadminEmployeeLis
         });
    });
 
-}
+};
 export default { getAllEmployeeBySuperAdminService }
