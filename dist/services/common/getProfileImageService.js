@@ -9,7 +9,7 @@ const getProfileImage = async (userId) => {
     try {
         const profileDetails = await userModel_1.default.findById({ _id: userId });
         const profileOriginaImagePath = (profileDetails === null || profileDetails === void 0 ? void 0 : profileDetails.profileImage) || '';
-        const profileImagePath = path_1.default.resolve(__dirname, '../../assets', 'profileImages', profileOriginaImagePath);
+        const profileImagePath = path_1.default.resolve(__dirname, '../../../', profileOriginaImagePath);
         return { success: true, imagePath: profileImagePath };
     }
     catch (error) {
