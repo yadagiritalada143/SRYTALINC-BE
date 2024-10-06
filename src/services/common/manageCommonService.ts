@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import csrf from 'csrf-token';
 import UserModel from '../../model/userModel';
 import VisitorsCountModel from '../../model/visitorsCountModel';
-import Organization from '../../model/organization';
 
 dotenv.config();
 
@@ -25,11 +24,6 @@ interface AuthResponse {
 }
 
 const SECRET_KEY = process.env.SECRET_KEY!;
-const SALT_ROUNDS = 10;
-const hashPassword = async (password: string) => {
-    return await bcrypt.hash(password, SALT_ROUNDS);
-};
-
 const updateVisitorCount = async () => {
     const getVisitorCount = await VisitorsCountModel.find().then((visitorsCount: any) => visitorsCount);
     const currentVisitorCount = getVisitorCount[0].visitorCount;

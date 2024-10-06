@@ -8,7 +8,8 @@ import getEmployeeDetailsController from '../controllers/common/getEmployeeDetai
 import uploadProfileImageController from '../controllers/common/uploadProfileImageController';
 import getProfileImageController from '../controllers/common/getProfileImageController';
 import validateJWT from '../middlewares/validateJWT';
-import upload from '../util/profileImagesFileUpload';
+import multer from 'multer';
+const upload = multer({ storage: multer.memoryStorage() });
 
 const commonRouter: Router = express.Router();
 

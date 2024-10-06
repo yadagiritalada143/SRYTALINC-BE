@@ -17,9 +17,11 @@
   "author": "Yadagiri Talada",
   "license": "ISC",
   "dependencies": {
+    "@types/aws-sdk2-types": "^0.0.5",
     "@types/cors": "^2.8.17",
     "@types/express-session": "^1.18.0",
     "@types/nodemailer": "^6.4.15",
+    "aws-sdk": "^2.1691.0",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
@@ -41,6 +43,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",

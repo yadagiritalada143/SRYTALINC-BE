@@ -4,13 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const userModel_1 = __importDefault(require("../../model/userModel"));
-const path_1 = __importDefault(require("path"));
 const getProfileImage = async (userId) => {
     try {
         const profileDetails = await userModel_1.default.findById({ _id: userId });
         const profileOriginaImagePath = (profileDetails === null || profileDetails === void 0 ? void 0 : profileDetails.profileImage) || '';
-        const profileImagePath = path_1.default.resolve(__dirname, '../../../', profileOriginaImagePath);
-        return { success: true, imagePath: profileImagePath };
+        return { success: true, imagePath: profileOriginaImagePath };
     }
     catch (error) {
         console.log('Error while fetching the profile image: ', error);
