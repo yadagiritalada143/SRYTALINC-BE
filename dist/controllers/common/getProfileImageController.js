@@ -20,7 +20,7 @@ const getProfileImage = (req, res) => {
         }
     })
         .then((profileImagePath) => {
-        // Get Profile Image from AWS S3 bucket
+        // Get Profile Image from AWS S3 bucket 
         manageProfileImages_1.default
             .getProfileImageFromS3(profileImagePath, awsS3Config_1.profileImagesFolder)
             .then((responseFromS3) => {

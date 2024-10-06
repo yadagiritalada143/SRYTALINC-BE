@@ -18,7 +18,7 @@ const getProfileImage = (req: Request, res: Response) => {
         })
         .then((profileImagePath: string) => {
 
-            // Get Profile Image from AWS S3 bucket
+            // Get Profile Image from AWS S3 bucket 
             getImageFromS3Utility
                 .getProfileImageFromS3(profileImagePath, profileImagesFolder)
                 .then((responseFromS3: any) => {
