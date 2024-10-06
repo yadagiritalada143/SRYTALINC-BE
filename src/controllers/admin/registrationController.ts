@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import adminSignUpService from '../../services/admin/registerEmployeeByAdminService';
 import { ERRORS, ACCOUNT_MESSAGES } from '../../constants/registrationMessages';
 import utilService from '../../util/sendRegistrationOTPEmail';
+import hashPasswordUtility from '../../util/hashPassword';
 
 const randomPasswordGenerate = () => {
     return (Math.floor(Math.random() * 90000000) + 10000000) + '';
@@ -20,7 +21,7 @@ const register = (req: Request, res: Response) => {
             if (emailExists) {
                 throw new Error(ERRORS.EMAIL_EXISTS);
             }
-            return adminSignUpService.hashPassword(newRegistrationData.password);
+            return hashPasswordUtility.hashPassword(newRegistrationData.password);
         })
         .then(hashedPassword => {
             newRegistrationData.password = hashedPassword;

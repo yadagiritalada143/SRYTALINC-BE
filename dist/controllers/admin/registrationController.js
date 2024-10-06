@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const registerEmployeeByAdminService_1 = __importDefault(require("../../services/admin/registerEmployeeByAdminService"));
 const registrationMessages_1 = require("../../constants/registrationMessages");
 const sendRegistrationOTPEmail_1 = __importDefault(require("../../util/sendRegistrationOTPEmail"));
+const hashPassword_1 = __importDefault(require("../../util/hashPassword"));
 const randomPasswordGenerate = () => {
     return (Math.floor(Math.random() * 90000000) + 10000000) + '';
 };
@@ -22,7 +23,7 @@ const register = (req, res) => {
         if (emailExists) {
             throw new Error(registrationMessages_1.ERRORS.EMAIL_EXISTS);
         }
-        return registerEmployeeByAdminService_1.default.hashPassword(newRegistrationData.password);
+        return hashPassword_1.default.hashPassword(newRegistrationData.password);
     })
         .then(hashedPassword => {
         newRegistrationData.password = hashedPassword;

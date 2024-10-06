@@ -3,29 +3,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const manageProfileImages_1 = __importDefault(require("../../util/manageProfileImages"));
 const uploadProfileImageService_1 = __importDefault(require("../../services/common/uploadProfileImageService"));
 const commonErrorMessages_1 = require("../../constants/commonErrorMessages");
-const uploadProfileImage = (req, res) => {
-    const file = req.file;
-    const { userId } = req.body;
-    if (!file) {
-        return res.status(400).send({ success: false, message: 'No file uploaded !' });
-    }
-    else {
-        uploadProfileImageService_1.default
-            .updateProfileImageDetails(file.filename, userId)
-            .then((responseAfterProfileImageUploaded) => {
-            if (!!responseAfterProfileImageUploaded && responseAfterProfileImageUploaded.success) {
-                res.status(200).json(responseAfterProfileImageUploaded);
+const path_1 = __importDefault(require("path"));
+const uuid_1 = require("uuid");
+const awsS3Config_1 = require("../../config/awsS3Config");
+const uploadProfileImage = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).send('No file uploaded.');
+        }
+        const { originalname, buffer, mimetype } = req.file;
+        const uniqueName = (0, uuid_1.v4)() + path_1.default.extname(originalname);
+        // Upload Profile Image to AWS S3 bucket
+        manageProfileImages_1.default.uploadImageToS3(uniqueName, buffer, mimetype, awsS3Config_1.profileImagesFolder)
+            .then((responseAfterProfileImageUpload) => {
+            if (responseAfterProfileImageUpload.Location) {
+                const { userId } = req.body;
+                uploadProfileImageService_1.default
+                    .updateProfileImageDetails(uniqueName, userId)
+                    .then((responseAfterProfileImageUploaded) => {
+                    if (!!responseAfterProfileImageUploaded && responseAfterProfileImageUploaded.success) {
+                        res.status(200).json(responseAfterProfileImageUploaded);
+                    }
+                    else {
+                        res.status(401).json(responseAfterProfileImageUploaded);
+                    }
+                })
+                    .catch((error) => {
+                    console.log(`Error occured while updating the Profile Image: ${error}`);
+                    res.status(500).json({ success: false, message: commonErrorMessages_1.EMPLOYEE_ERRORS.EMPLOYEE_PROFILE_IMAGE_UPDATE_ERROR });
+                });
             }
             else {
-                res.status(401).json(responseAfterProfileImageUploaded);
+                res.status(500).json({ success: false, message: commonErrorMessages_1.EMPLOYEE_ERRORS.EMPLOYEE_PROFILE_IMAGE_UPDATE_ERROR });
             }
         })
             .catch((error) => {
-            console.log(`Error occured while updating the Profile Image: ${error}`);
+            console.log(`Error occured while Profile Image upload: ${error}`);
             res.status(500).json({ success: false, message: commonErrorMessages_1.EMPLOYEE_ERRORS.EMPLOYEE_PROFILE_IMAGE_UPDATE_ERROR });
         });
+    }
+    catch (error) {
+        console.log(`Error occured while updating the Profile Image to S3: ${error}`);
+        res.status(500).json({ success: false, message: commonErrorMessages_1.EMPLOYEE_ERRORS.EMPLOYEE_PROFILE_IMAGE_UPDATE_ERROR });
     }
 };
 exports.default = { uploadProfileImage };

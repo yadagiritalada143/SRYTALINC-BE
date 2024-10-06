@@ -1,12 +1,5 @@
 import UserModel from "../../model/userModel";
 import IUser from "../../interfaces/user";
-import bcrypt from 'bcrypt';
-
-const SALT_ROUNDS = 10;
-
-const hashPassword = (password: string) => {
-    return bcrypt.hash(password, SALT_ROUNDS);
-};
 
 const isAccountPresent = async (email: string) => {
     const emailExists = await UserModel.findOne({ email: email }).then((user: any) => !!user);
@@ -20,4 +13,4 @@ const saveAccount = async (userData: IUser) => {
     return result;
 }
 
-export default { hashPassword, isAccountPresent, saveAccount };
+export default { isAccountPresent, saveAccount };

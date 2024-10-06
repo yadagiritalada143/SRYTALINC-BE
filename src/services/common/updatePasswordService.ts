@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import UserModel from '../../model/userModel';
-import registrationService from '../admin/registerEmployeeByAdminService';
+import hashPasswordUtility from '../../util/hashPassword';
 
 const updatePassword = async (updatePasswordDetails: any) => {
     return new Promise(async (resolve, reject) => {
@@ -13,7 +13,7 @@ const updatePassword = async (updatePasswordDetails: any) => {
                         if (!isPasswordValid) {
                             resolve({ success: false, message: 'Temporary password is not matched !' });
                         } else {
-                            registrationService.hashPassword(updatePasswordDetails.newPassword)
+                            hashPasswordUtility.hashPassword(updatePasswordDetails.newPassword)
                                 .then(async (hashedNewPassword: string) => {
                                     const result = await UserModel.updateOne({ _id: updatePasswordDetails.userId }, { password: hashedNewPassword, passwordResetRequired: false });
                                     resolve({ success: true, message: 'Password updated Successfully !' });

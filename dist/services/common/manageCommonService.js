@@ -11,10 +11,6 @@ const userModel_1 = __importDefault(require("../../model/userModel"));
 const visitorsCountModel_1 = __importDefault(require("../../model/visitorsCountModel"));
 dotenv_1.default.config();
 const SECRET_KEY = process.env.SECRET_KEY;
-const SALT_ROUNDS = 10;
-const hashPassword = async (password) => {
-    return await bcrypt_1.default.hash(password, SALT_ROUNDS);
-};
 const updateVisitorCount = async () => {
     const getVisitorCount = await visitorsCountModel_1.default.find().then((visitorsCount) => visitorsCount);
     const currentVisitorCount = getVisitorCount[0].visitorCount;

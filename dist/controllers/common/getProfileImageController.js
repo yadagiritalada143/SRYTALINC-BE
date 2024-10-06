@@ -5,18 +5,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const getProfileImageService_1 = __importDefault(require("../../services/common/getProfileImageService"));
 const commonErrorMessages_1 = require("../../constants/commonErrorMessages");
+const manageProfileImages_1 = __importDefault(require("../../util/manageProfileImages"));
+const awsS3Config_1 = require("../../config/awsS3Config");
 const getProfileImage = (req, res) => {
     const { userId } = req.body;
     getProfileImageService_1.default
         .getProfileImage(userId)
         .then((responseAftergetProfileImage) => {
         if (!!responseAftergetProfileImage && responseAftergetProfileImage.success) {
-            res.setHeader('Content-Type', 'image/jpeg');
-            res.status(200).sendFile(responseAftergetProfileImage.imagePath);
+            return responseAftergetProfileImage.imagePath;
         }
         else {
-            res.status(401).json(responseAftergetProfileImage);
+            throw new Error('Error while fetching Profile Image Details !');
         }
+    })
+        .then((profileImagePath) => {
+        // Get Profile Image from AWS S3 bucket
+        manageProfileImages_1.default
+            .getProfileImageFromS3(profileImagePath, awsS3Config_1.profileImagesFolder)
+            .then((responseFromS3) => {
+            res.setHeader('Content-Type', responseFromS3.imageDetails.contentType);
+            res.status(200).send(responseFromS3.imageDetails.body);
+        }).catch((error) => {
+            console.log('Error from S3 while fetching profile image is:', error);
+            res.status(401).json(error);
+        });
     })
         .catch((error) => {
         console.log(`Error occured while fetching the Profile Image: ${error}`);
