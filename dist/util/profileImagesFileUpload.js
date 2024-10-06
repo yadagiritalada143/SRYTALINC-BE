@@ -9,7 +9,7 @@ const path_1 = __importDefault(require("path"));
 // Set up storage engine for Multer
 const storage = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
-        const profileImagesDirName = '../assets/profileImages';
+        const profileImagesDirName = '../../';
         const imagesDir = path_1.default.join(__dirname, profileImagesDirName);
         cb(null, imagesDir);
     },
