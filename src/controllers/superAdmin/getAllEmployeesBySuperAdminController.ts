@@ -1,9 +1,8 @@
-import { Request,Response } from "express";
-import {SUPERADMIN_ERROR} from '../../constants/superAdmin/superadminErrorMessage';
+import { Request,Response } from 'express';
+import { SUPERADMIN_ERROR } from '../../constants/superAdmin/superadminErrorMessage';
 import allEmployeesBySuperAdminServices from '../../services/superAdmin/getAllEmployeesBySuperAdminService';
 
-const getAllEmployeesBySuperAdmin=(req:Request, res:Response) => {
-    
+const getAllEmployeesBySuperAdmin = (req:Request, res:Response) => {  
     allEmployeesBySuperAdminServices
     .getAllEmployeeBySuperAdminService()
     .then(fetchAllEmployeeBySuperAdminResponse => {
