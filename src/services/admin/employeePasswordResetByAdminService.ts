@@ -4,7 +4,7 @@ const employeePasswordResetByAdmin = async (employeeId: string) => {
     try {
         const result = await UserModel.findOneAndUpdate({ _id: employeeId }, {
             passwordResetRequired: true
-        });
+        },{ new: true });
         return result;
     } catch (error: any) {
         console.log(`Error occured while asking employee to reset password: ${error}`);

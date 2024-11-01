@@ -5,7 +5,7 @@ interface FetchUserResponse {
     userDetails?: any;
 }
 
-const getEmployeeDetailsByAdmin = (id: string): Promise<FetchUserResponse> => {
+export const getEmployeeDetailsByAdmin = (id: string): Promise<FetchUserResponse> => {
     return new Promise((resolve, reject) => {
         UserModel.findOne({ _id: id })
             .populate('bloodGroup')
