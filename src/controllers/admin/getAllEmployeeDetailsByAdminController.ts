@@ -3,9 +3,9 @@ import { COMMON_ERRORS } from '../../constants/commonErrorMessages';
 import allEmployeeDetailsServices from '../../services/admin/getAllEmployeeDetailsByAdminService'
 
 const getAllEmployeeDetails = (req: Request, res: Response) => {
-    const { organizationId } = req.body;
+    const { organizationId, userId } = req.body;
     allEmployeeDetailsServices
-        .getAllEmployeeDetailsByAdmin(organizationId)
+        .getAllEmployeeDetailsByAdmin(organizationId, userId)
         .then(fetchAllEmployeeDetailsByAdminResponse => {
             res.status(200).json(fetchAllEmployeeDetailsByAdminResponse);
         })

@@ -5,9 +5,15 @@ interface FetchEmployeeDetailsResponse {
     usersList?: any;
 }
 
-const getAllEmployeeDetailsByAdmin = (organizationId: string): Promise<FetchEmployeeDetailsResponse> => {
+const getAllEmployeeDetailsByAdmin = (organizationId: string, userId: string): Promise<FetchEmployeeDetailsResponse> => {
+
+    console.log('User ID passed is:', userId);
+
     return new Promise((resolve, reject) => {
-        UserModel.find({ organization: organizationId })
+        UserModel.find({
+            organization: organizationId,
+            _id: { $ne: userId } // Exclude the user with the provided userId
+        })
             .populate('bloodGroup')
             .populate('employmentType')
             .populate('employeeRole')
@@ -27,8 +33,7 @@ const getAllEmployeeDetailsByAdmin = (organizationId: string): Promise<FetchEmpl
                 reject({ success: false });
             });
     });
+};
 
-
-}
 export default { getAllEmployeeDetailsByAdmin }
 
