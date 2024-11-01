@@ -6,6 +6,7 @@ import session from 'express-session';
 import connectToDb from './config/databaseConfig';
 import commonRouter from './routes/commonRouter';
 import adminRouter from './routes/adminRoutes';
+import superadminRouter from './routes/superadminRoutes';
 import recruiterRouter from './routes/recruiterRoutes';
 
 dotenv.config();
@@ -31,6 +32,7 @@ connectToDb();
 
 app.use('/', commonRouter);
 app.use('/admin', adminRouter);
+app.use('/superadmin', superadminRouter);
 app.use('/recruiter', recruiterRouter);
 
 app.listen(port, () => {

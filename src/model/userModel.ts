@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
     employeeRole: [{ type: mongoose.Schema.Types.ObjectId, ref: Employeerole }],
     organization: { type: mongoose.Schema.Types.ObjectId, ref: Organization },
     applicationWalkThrough: { type: mongoose.Schema.Types.Number },
-    created_on: { type: mongoose.Schema.Types.Date }
+    created_on: { type: mongoose.Schema.Types.Date },
+    lastLoggedOn: { type: mongoose.Schema.Types.Date }
 }, {
     collection: 'users',
     toObject: { virtuals: true },

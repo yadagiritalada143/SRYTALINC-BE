@@ -16,6 +16,7 @@ interface IUser extends Document {
     employmentType?: mongoose.Schema.Types.ObjectId;
     employeeRole?: mongoose.Schema.Types.Array;
     organization?: mongoose.Schema.Types.ObjectId;
+    lastLoggedOn?: Date;
 };
 
 export default IUser;

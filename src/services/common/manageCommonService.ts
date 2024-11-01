@@ -49,12 +49,16 @@ const authenticateAccount = ({ email, password }: LoginCredentials): Promise<Aut
                 if (!user) {
                     resolve({ success: false });
                 } else {
-                    bcrypt.compare(password, user.password).then((isPasswordValid: boolean) => {
+                    bcrypt.compare(password, user.password).then(async (isPasswordValid: boolean) => {
                         if (!isPasswordValid) {
                             resolve({ success: false });
                         } else {
                             const token = jwt.sign({ email: user.email, userId: user.id, organizationId: user.organization }, SECRET_KEY, { expiresIn: '1h' });
-                            resolve({ success: true, userRole: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, applicationWalkThrough: user.applicationWalkThrough, token, firstName: user.firstName, lastName: user.lastName });
+                            user.lastLoggedOn = new Date();
+                            await user.save();
+                            resolve({
+                                success: true, userRole: user.userRole, id: user.id, passwordResetRequired: user.passwordResetRequired, applicationWalkThrough: user.applicationWalkThrough, token, firstName: user.firstName, lastName: user.lastName
+                            });
                         }
                     });
                 }
