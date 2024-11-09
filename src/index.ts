@@ -8,6 +8,7 @@ import commonRouter from './routes/commonRouter';
 import adminRouter from './routes/adminRoutes';
 import superadminRouter from './routes/superadminRoutes';
 import recruiterRouter from './routes/recruiterRoutes';
+import superAdminRouter from './routes/superAdminRoutes';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/', commonRouter);
 app.use('/admin', adminRouter);
 app.use('/superadmin', superadminRouter);
 app.use('/recruiter', recruiterRouter);
+app.use('/superadmin', superAdminRouter);
 
 app.listen(port, () => {
     console.log(`Server is running at  http://localhost:${port}`);
