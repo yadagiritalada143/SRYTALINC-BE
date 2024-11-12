@@ -28,7 +28,8 @@ const UserSchema = new mongoose_1.default.Schema({
     employeeRole: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: employeeRole_1.default }],
     organization: { type: mongoose_1.default.Schema.Types.ObjectId, ref: organization_1.default },
     applicationWalkThrough: { type: mongoose_1.default.Schema.Types.Number },
-    created_on: { type: mongoose_1.default.Schema.Types.Date }
+    created_on: { type: mongoose_1.default.Schema.Types.Date },
+    lastLoggedOn: { type: mongoose_1.default.Schema.Types.Date }
 }, {
     collection: 'users',
     toObject: { virtuals: true },

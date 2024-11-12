@@ -9,8 +9,9 @@ const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const express_session_1 = __importDefault(require("express-session"));
 const databaseConfig_1 = __importDefault(require("./config/databaseConfig"));
-const commonRouter_1 = __importDefault(require("./routes/commonRouter"));
+const commonRoutes_1 = __importDefault(require("./routes/commonRoutes"));
 const adminRoutes_1 = __importDefault(require("./routes/adminRoutes"));
+const superadminRoutes_1 = __importDefault(require("./routes/superadminRoutes"));
 const recruiterRoutes_1 = __importDefault(require("./routes/recruiterRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -27,8 +28,9 @@ app.use((0, cors_1.default)({
     exposedHeaders: ["*"]
 }));
 (0, databaseConfig_1.default)();
-app.use('/', commonRouter_1.default);
+app.use('/', commonRoutes_1.default);
 app.use('/admin', adminRoutes_1.default);
+app.use('/superadmin', superadminRoutes_1.default);
 app.use('/recruiter', recruiterRoutes_1.default);
 app.listen(port, () => {
     console.log(`Server is running at  http://localhost:${port}`);

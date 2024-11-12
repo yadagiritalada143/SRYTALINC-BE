@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const commonErrorMessages_1 = require("../../constants/commonErrorMessages");
 const getAllEmployeeDetailsByAdminService_1 = __importDefault(require("../../services/admin/getAllEmployeeDetailsByAdminService"));
 const getAllEmployeeDetails = (req, res) => {
-    const { organizationId } = req.body;
+    const { organizationId, userId } = req.body;
     getAllEmployeeDetailsByAdminService_1.default
-        .getAllEmployeeDetailsByAdmin(organizationId)
+        .getAllEmployeeDetailsByAdmin(organizationId, userId)
         .then(fetchAllEmployeeDetailsByAdminResponse => {
         res.status(200).json(fetchAllEmployeeDetailsByAdminResponse);
     })
