@@ -1,12 +1,13 @@
 import UserModel from '../../model/userModel';
 
-interface FetchsuperadminEmployeeListResponse {
+interface FetchSuperadminEmployeeListResponse {
    success: boolean;
    superadminEmployeeList?: any;
 }
-const getAllEmployeeBySuperAdminService = (): Promise<FetchsuperadminEmployeeListResponse> => {
+
+const getAllEmployeesBySuperadminService = (organizationId: string): Promise<FetchSuperadminEmployeeListResponse> => {
    return new Promise((resolve, reject) => {
-      UserModel.find()
+      UserModel.find({ organization: organizationId })
          .then((users: any) => {
             if (!users) {
                reject({ success: false });
@@ -25,4 +26,4 @@ const getAllEmployeeBySuperAdminService = (): Promise<FetchsuperadminEmployeeLis
    });
 
 };
-export default { getAllEmployeeBySuperAdminService }
+export default { getAllEmployeesBySuperadminService }

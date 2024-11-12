@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import superadminSignUpService from "../../services/superadmin/registerAdminBySuperadminService";
-import superadminOrganizationService from "../../services/superadmin/getOrganizationBySuperAdmin";
+import registerAdminBySuperAdminService from "../../services/superAdmin/registerAdminBySuperadminService";
 import { ERRORS, ACCOUNT_MESSAGES } from "../../constants/registrationMessages";
 import utilService from "../../util/sendRegistrationOTPEmail";
 import hashPasswordUtility from "../../util/hashPassword";
@@ -16,7 +15,7 @@ const register = (req: Request, res: Response) => {
   newRegistrationData.passwordResetRequired = true;
   newRegistrationData.organization = newRegistrationData.organizationId;
   newRegistrationData.applicationWalkThrough = 1;
-  superadminSignUpService
+  registerAdminBySuperAdminService
     .isAccountPresent(newRegistrationData.email)
     .then((emailExists) => {
       if (emailExists) {
@@ -26,7 +25,7 @@ const register = (req: Request, res: Response) => {
     })
     .then((hashedPassword) => {
       newRegistrationData.password = hashedPassword;
-      return superadminSignUpService.saveAccount(newRegistrationData);
+      return registerAdminBySuperAdminService.saveAccount(newRegistrationData);
     })
     .then((responseAfterRegistration) => {
       if (responseAfterRegistration.id) {
@@ -50,15 +49,4 @@ const register = (req: Request, res: Response) => {
     });
 };
 
-const getOrganizations = (req: Request, res: Response) => {
-  superadminOrganizationService
-    .getOrganizationService()
-    .then((organizations) => {
-      return res.status(200).json({ organizations });
-    })
-    .catch(() => {
-      return res.status(500).json({ message: ERRORS.SOMETHING_WENT_WRONG });
-    });
-};
-
-export default { register, getOrganizations };
+export default { register };
