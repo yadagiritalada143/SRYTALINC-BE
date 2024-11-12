@@ -8,7 +8,7 @@ const registrationController_1 = __importDefault(require("../controllers/superAd
 const getAllEmployeesBySuperadminController_1 = __importDefault(require("../controllers/superAdmin/getAllEmployeesBySuperadminController"));
 const getAllOrganisationsBySuperadminController_1 = __importDefault(require("../controllers/superAdmin/getAllOrganisationsBySuperadminController"));
 const superadminRouter = express_1.default.Router();
-superadminRouter.post("/registerAdminBySuperadmin", registrationController_1.default.register);
-superadminRouter.get("/getAllEmployeesBySuperadmin/:organizationId", getAllEmployeesBySuperadminController_1.default.getAllEmployeesBySuperAdmin);
-superadminRouter.get("/getAllOrganizationsBySuperadmin", getAllOrganisationsBySuperadminController_1.default.getAllOrganizationsBySuperadmin);
+superadminRouter.post('/registerAdminBySuperadmin', registrationController_1.default.register);
+superadminRouter.get('/getAllEmployeesBySuperadmin/:organizationId', getAllEmployeesBySuperadminController_1.default.getAllEmployeesBySuperAdmin);
+superadminRouter.get('/getAllOrganizationsBySuperadmin', getAllOrganisationsBySuperadminController_1.default.getAllOrganizationsBySuperadmin);
 exports.default = superadminRouter;
