@@ -4,7 +4,13 @@
     "files": true
   },
   "compilerOptions": {
-    "target": "es2017", // Specify a target, such as "es2017"
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*"
+      ]
+    },
+    "target": "es2017",
     "module": "commonjs",
     "rootDir": "./src",
     "moduleResolution": "node",
@@ -23,16 +29,15 @@
   "exclude": [
     "node_modules",
     "public_html",
-    "test",
+    "tests",
     "**/*.spec.ts",
-    "**/*.test.ts",
     "./coverage",
     "./dist",
     "__tests__",
     "jest.config.js"
   ],
   "include": [
-    "src/**/*.ts", // Include all TypeScript files in the src directory
-    "custom.d.ts" // Include custom type definitions
+    "src/**/*.ts",
+    "custom.d.ts"
   ]
 }

@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
 import connectToDb from './config/databaseConfig';
-import commonRouter from './routes/commonRouter';
+import commonRouter from './routes/commonRoutes';
 import adminRouter from './routes/adminRoutes';
 import superadminRouter from './routes/superadminRoutes';
 import recruiterRouter from './routes/recruiterRoutes';
