@@ -15,7 +15,7 @@ const uploadImageToS3 = async (fileName, buffer, mimetype, s3FolderNameToUpload)
         };
         s3Client_1.default.upload(params, (error, data) => {
             if (error) {
-                console.error('Error uploading to S3:', error);
+                console.error('Error uploading to S3 bucket:', error);
                 reject(error);
             }
             resolve(data);

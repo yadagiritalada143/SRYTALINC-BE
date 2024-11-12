@@ -4,17 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const userModel_1 = __importDefault(require("../../model/userModel"));
-const getAllEmployeeDetailsByAdmin = (organizationId, userId) => {
-    console.log('User ID passed is:', userId);
+const getAllEmployeesBySuperadminService = (organizationId) => {
     return new Promise((resolve, reject) => {
-        userModel_1.default.find({
-            organization: organizationId,
-            _id: { $ne: userId } // Exclude the user with the provided userId
-        })
-            .populate('bloodGroup')
-            .populate('employmentType')
-            .populate('employeeRole')
-            .populate('organization')
+        userModel_1.default.find({ organization: organizationId })
             .then((users) => {
             if (!users) {
                 reject({ success: false });
@@ -22,14 +14,14 @@ const getAllEmployeeDetailsByAdmin = (organizationId, userId) => {
             else {
                 resolve({
                     success: true,
-                    usersList: users
+                    superadminEmployeeList: users
                 });
             }
         })
             .catch((error) => {
-            console.error('Error in fetching Employee details:', error);
+            console.error('Error in fetching superadmin Employee details:', error);
             reject({ success: false });
         });
     });
 };
-exports.default = { getAllEmployeeDetailsByAdmin };
+exports.default = { getAllEmployeesBySuperadminService };
