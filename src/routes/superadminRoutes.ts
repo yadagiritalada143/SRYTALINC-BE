@@ -5,9 +5,9 @@ import getAllOrganizationsBySuperadminController from "../controllers/superAdmin
 
 const superadminRouter: Router = express.Router();
 
-superadminRouter.post("/registerAdminBySuperadmin", registerAdminBySuperadminController.register);
-superadminRouter.get("/getAllEmployeesBySuperadmin/:organizationId", getAllEmployeesBySuperadminController.getAllEmployeesBySuperAdmin);
-superadminRouter.get("/getAllOrganizationsBySuperadmin", getAllOrganizationsBySuperadminController.getAllOrganizationsBySuperadmin
+superadminRouter.post('/registerAdminBySuperadmin', registerAdminBySuperadminController.register);
+superadminRouter.get('/getAllEmployeesBySuperadmin/:organizationId', getAllEmployeesBySuperadminController.getAllEmployeesBySuperAdmin);
+superadminRouter.get('/getAllOrganizationsBySuperadmin', getAllOrganizationsBySuperadminController.getAllOrganizationsBySuperadmin
 );
 
 export default superadminRouter;
