@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import getAllEmployeesBySuperadminController from '../controllers/superadmin/getAllEmployeesBySuperadminController';
 
-const superAdminRouter: Router = express.Router();
-superAdminRouter.get('/getAllEmployeesBySuperadmin', getAllEmployeesBySuperadminController.getAllEmployeesBySuperAdmin);
+const superadminRouter: Router = express.Router();
+superadminRouter.get('/getAllEmployeesBySuperadmin', getAllEmployeesBySuperadminController.getAllEmployeesBySuperadmin);
 
-export default superAdminRouter;
+export default superadminRouter;

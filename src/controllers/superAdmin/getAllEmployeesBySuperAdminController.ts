@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { SUPERADMIN_ERROR } from '../../constants/superAdmin/superadminErrorMessage';
+import { SUPERADMIN_ERROR } from '../../constants/superadmin/superadminErrorMessage';
 import allEmployeesBySuperadminServices from '../../services/superadmin/getAllEmployeesBySuperadminService';
 
-const getAllEmployeesBySuperAdmin = (req: Request, res: Response) => {
+const getAllEmployeesBySuperadmin = (req: Request, res: Response) => {
     const { organizationId } = req.params;
     allEmployeesBySuperadminServices
         .getAllEmployeesBySuperadminService(organizationId)
@@ -14,4 +14,4 @@ const getAllEmployeesBySuperAdmin = (req: Request, res: Response) => {
             res.status(500).json({ success: false, message: SUPERADMIN_ERROR.FETCHING_ALL_EMPLOYEE_DETAILS_ERROR });
         });
 };
-export default { getAllEmployeesBySuperAdmin }
+export default { getAllEmployeesBySuperadmin }
