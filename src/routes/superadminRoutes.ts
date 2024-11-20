@@ -1,12 +1,7 @@
-import express, { Router } from "express";
-import registerAdminBySuperadminController from "../controllers/superAdmin/registrationController";
-import getAllEmployeesBySuperadminController from "../controllers/superAdmin/getAllEmployeesBySuperadminController";
-import getAllOrganizationsBySuperadminController from "../controllers/superAdmin/getAllOrganisationsBySuperadminController";
+import express, { Router } from 'express';
+import getAllEmployeesBySuperadminController from '../controllers/superadmin/getAllEmployeesBySuperadminController';
 
-const superadminRouter: Router = express.Router();
+const superAdminRouter: Router = express.Router();
+superAdminRouter.get('/getAllEmployeesBySuperadmin', getAllEmployeesBySuperadminController.getAllEmployeesBySuperAdmin);
 
-superadminRouter.post('/registerAdminBySuperadmin', registerAdminBySuperadminController.register);
-superadminRouter.get('/getAllEmployeesBySuperadmin/:organizationId', getAllEmployeesBySuperadminController.getAllEmployeesBySuperAdmin);
-superadminRouter.get('/getAllOrganizationsBySuperadmin', getAllOrganizationsBySuperadminController.getAllOrganizationsBySuperadmin);
-
-export default superadminRouter;
+export default superAdminRouter;

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { SUPERADMIN_ERROR } from '../../constants/superAdmin/superadminErrorMessage';
-import allEmployeesBySuperAdminServices from '../../services/superAdmin/getAllEmployeesBySuperAdminService';
+import allEmployeesBySuperadminServices from '../../services/superadmin/getAllEmployeesBySuperadminService';
 
 const getAllEmployeesBySuperAdmin = (req: Request, res: Response) => {
     const { organizationId } = req.params;
-    allEmployeesBySuperAdminServices
+    allEmployeesBySuperadminServices
         .getAllEmployeesBySuperadminService(organizationId)
         .then(fetchAllEmployeesBySuperadminResponse => {
             res.status(200).json(fetchAllEmployeesBySuperadminResponse);

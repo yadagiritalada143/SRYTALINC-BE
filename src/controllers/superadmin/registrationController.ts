@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import registerAdminBySuperAdminService from "../../services/superAdmin/registerAdminBySuperadminService";
+import registerAdminBySuperAdminService from "../../services/superadmin/registerAdminBySuperadminService";
 import { ERRORS, ACCOUNT_MESSAGES } from "../../constants/registrationMessages";
 import utilService from "../../util/sendRegistrationOTPEmail";
 import hashPasswordUtility from "../../util/hashPassword";

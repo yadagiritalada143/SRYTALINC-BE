@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import getAllOrganisationsBySuperadminService from "../../services/superAdmin/getAllOrganizationsBySuperadminService"
+import getAllOrganisationsBySuperadminService from "../../services/superadmin/getAllOrganizationsBySuperadminService"
 
 const getAllOrganizationsBySuperadmin = (req: Request, res: Response) => {
     getAllOrganisationsBySuperadminService
