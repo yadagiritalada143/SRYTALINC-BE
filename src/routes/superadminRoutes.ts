@@ -7,7 +7,6 @@ const superadminRouter: Router = express.Router();
 
 superadminRouter.post('/registerAdminBySuperadmin', registerAdminBySuperadminController.register);
 superadminRouter.get('/getAllEmployeesBySuperadmin/:organizationId', getAllEmployeesBySuperadminController.getAllEmployeesBySuperAdmin);
-superadminRouter.get('/getAllOrganizationsBySuperadmin', getAllOrganizationsBySuperadminController.getAllOrganizationsBySuperadmin
-);
+superadminRouter.get('/getAllOrganizationsBySuperadmin', getAllOrganizationsBySuperadminController.getAllOrganizationsBySuperadmin);
 
 export default superadminRouter;
