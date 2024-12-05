@@ -29,8 +29,8 @@ const sendOTPEmail = async (firstName: string, lastName: string, userName: strin
                     </p>
                     
                     <p>
-                    Click here to <a href="https://srytal-inc.netlify.app/srytalinc/employee/login">Login</a> 
-                    or use the link below: <b>https://srytal-inc.netlify.app/srytalinc/employee/login</b>
+                    Click here to <a href="https://srytal-inc.netlify.app/srytal/employee/login">Login</a> 
+                    or use the link below: <b>https://srytal-inc.netlify.app/srytal/employee/login</b>
                     </p>
 
                     <p><b>Username:</b> ${userName}</p>
