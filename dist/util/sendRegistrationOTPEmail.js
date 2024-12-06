@@ -31,8 +31,8 @@ const sendOTPEmail = async (firstName, lastName, userName, tempPassword) => {
                     </p>
                     
                     <p>
-                    Click here to <a href="https://srytal-inc.netlify.app/employee/srytalinc/login">Login</a> 
-                    or use the link below: <b>https://srytal-inc.netlify.app/employee/srytalinc/login</b>
+                    Click here to <a href="https://srytal-inc.netlify.app/srytal/employee/login">Login</a> 
+                    or use the link below: <b>https://srytal-inc.netlify.app/srytal/employee/login</b>
                     </p>
 
                     <p><b>Username:</b> ${userName}</p>
@@ -42,7 +42,7 @@ const sendOTPEmail = async (firstName, lastName, userName, tempPassword) => {
                     
                     <br/>
                     <p>Regards,</p>
-                    <p><b>SRYTAL</b></p>
+                    <p><b>SRYTAL SYSTEMS INDIA PVT LTD.</b></p>
                 </body>
             </html>
                 `;
