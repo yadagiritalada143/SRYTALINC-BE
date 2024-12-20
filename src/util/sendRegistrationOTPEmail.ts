@@ -18,32 +18,56 @@ const sendOTPEmail = async (firstName: string, lastName: string, userName: strin
     try {
         const transporter = nodemailer.createTransport(emailConfiguration);
         const mailBody = `     
-            <html>
-                <body>
-                    <p>Hello <b>${firstName} ${lastName}</b>,</p>
-                
-                    <p>
-                        Below are the credentials to log into the system. Please note that you must
-                        change your password after successfully login with your username and
-                        temporary password.
-                    </p>
-                    
-                    <p>
-                    Click here to <a href="https://srytal-inc.netlify.app/srytal/employee/login">Login</a> 
-                    or use the link below: <b>https://srytal-inc.netlify.app/srytal/employee/login</b>
-                    </p>
+<html>
+  <body style="font-family: serif; background-color: #f4f4f9; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; border: 1px solid #f7f1f4 ; border-radius: 5px;">
+      <!-- Header Section -->
+      <div style="background-color:rgb(121, 181, 245); color: #fff; text-align: center; padding: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+        <h2 style="margin: 0; font-size: 18px;">Hello <b>${firstName} ${lastName}</b></h2>
+      </div>
 
-                    <p><b>Username:</b> ${userName}</p>
-                    <p><b>Temporary password:</b> ${tempPassword}</p>
+      <!-- Body Section -->
+      <div style="background-color:rgb(220, 235, 248); padding: 20px; color:#4f4a4c "><br><br>
+        <p style="margin: 0 0 15px; font-size: 14px; color: #333;">
+          Below are the credentials to login to the system. Please note that you must
+          change your password after successfully logging in with your username and
+          temporary password.
+        </p>
+        
+        <p style="margin: 0 0 15px; font-size: 14px; color: #333;">
+          Click here to 
+          <a href="https://srytal-inc.netlify.app/srytal/employee/login" 
+             style="color: #007bff; text-decoration: none;">
+            Login
+          </a> 
+          or use the link below:<br>
+          <b style="color: #007bff;">https://srytal-inc.netlify.app/srytal/employee/login</b>
+        </p>
 
-                    <p><b><u>Note:</u></b> Please change your password as soon as possible before it expires !</p>
-                    
-                    <br/>
-                    <p>Regards,</p>
-                    <p><b>SRYTAL SYSTEMS INDIA PVT LTD.</b></p>
-                </body>
-            </html>
-                `;
+        <p style="margin: 0 0 10px; font-size: 14px; color: #333;">
+          <b>Username:</b> ${userName}
+        </p>
+        <p style="margin: 0 0 15px; font-size: 14px; color: #333;">
+          <b>Temporary password:</b> ${tempPassword}
+        </p>
+
+        <p style="margin: 0 0 15px; font-size: 14px; color: #d9534f; font-weight: bold;">
+          <u>Note:</u> Please change your password as soon as possible before it expires!
+        </p>
+
+        <p style="margin: 0 0 15px; font-size: 14px; color: #333;">
+          Please reach out to 
+          <a href="mailto:admin@srytal.com" style="color: #007bff; text-decoration: none;">
+            admin@srytal.com
+          </a>, if you are facing any issues.
+        </p><br>
+
+        <p style="margin: 20px 0 5px; font-size: 14px; color: #333;">Regards,</p>
+        <p style="font-size: 14px; font-weight: bold; color: #333;">SRYTAL SYSTEMS INDIA PVT LTD.</p>
+      </div>
+    </div>
+  </body>
+</html> `;
 
         const mailOptions = {
             from: process.env.EMAIL_FROM,
